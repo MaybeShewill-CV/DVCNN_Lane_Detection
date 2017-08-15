@@ -1,0 +1,226 @@
+{
+    "pool4": {
+        "strides": [
+            1,
+            2,
+            2,
+            1
+        ],
+        "padding": "SAME",
+        "ksize": [
+            1,
+            2,
+            2,
+            1
+        ]
+    },
+    "fc6": {
+        "trainable": true,
+        "strides": [
+            1,
+            4,
+            4,
+            1
+        ],
+        "padding": "VALID",
+        "ksize": [
+            4,
+            4,
+            64,
+            256
+        ]
+    },
+    "pool2": {
+        "strides": [
+            1,
+            2,
+            2,
+            1
+        ],
+        "padding": "SAME",
+        "ksize": [
+            1,
+            2,
+            2,
+            1
+        ]
+    },
+    "pool3": {
+        "strides": [
+            1,
+            2,
+            2,
+            1
+        ],
+        "padding": "SAME",
+        "ksize": [
+            1,
+            2,
+            2,
+            1
+        ]
+    },
+    "conv2_front": {
+        "trainable": true,
+        "strides": [
+            1,
+            1,
+            1,
+            1
+        ],
+        "padding": "SAME",
+        "ksize": [
+            5,
+            5,
+            16,
+            16
+        ]
+    },
+    "relu5": {
+        "method": "RELU"
+    },
+    "concat7": {
+        "axis": 3
+    },
+    "pool1": {
+        "strides": [
+            1,
+            2,
+            2,
+            1
+        ],
+        "padding": "SAME",
+        "ksize": [
+            1,
+            2,
+            2,
+            1
+        ]
+    },
+    "conv1": {
+        "trainable": true,
+        "strides": [
+            1,
+            1,
+            1,
+            1
+        ],
+        "padding": "SAME",
+        "ksize": [
+            5,
+            5,
+            3,
+            16
+        ]
+    },
+    "relu1": {
+        "method": "RELU"
+    },
+    "conv5": {
+        "trainable": true,
+        "strides": [
+            1,
+            1,
+            1,
+            1
+        ],
+        "padding": "SAME",
+        "ksize": [
+            5,
+            5,
+            32,
+            64
+        ]
+    },
+    "conv3": {
+        "trainable": true,
+        "strides": [
+            1,
+            1,
+            1,
+            1
+        ],
+        "padding": "SAME",
+        "ksize": [
+            5,
+            5,
+            16,
+            32
+        ]
+    },
+    "relu2": {
+        "method": "RELU"
+    },
+    "relu4": {
+        "method": "RELU"
+    },
+    "conv2_top": {
+        "trainable": true,
+        "strides": [
+            1,
+            1,
+            1,
+            1
+        ],
+        "padding": "SAME",
+        "ksize": [
+            5,
+            5,
+            3,
+            16
+        ]
+    },
+    "pool5": {
+        "strides": [
+            1,
+            2,
+            2,
+            1
+        ],
+        "padding": "SAME",
+        "ksize": [
+            1,
+            2,
+            2,
+            1
+        ]
+    },
+    "relu3": {
+        "method": "RELU"
+    },
+    "fc8": {
+        "trainable": true,
+        "strides": [
+            1,
+            1,
+            1,
+            1
+        ],
+        "padding": "VALID",
+        "ksize": [
+            1,
+            1,
+            512,
+            2
+        ]
+    },
+    "conv4": {
+        "trainable": true,
+        "strides": [
+            1,
+            1,
+            1,
+            1
+        ],
+        "padding": "SAME",
+        "ksize": [
+            5,
+            5,
+            32,
+            32
+        ]
+    },
+    "relu6": {
+        "method": "RELU"
+    }
+}

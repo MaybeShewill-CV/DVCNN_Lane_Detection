@@ -1,0 +1,6 @@
+model_checkpoint_path: "dvcnn.ckpt-1199"
+all_model_checkpoint_paths: "dvcnn.ckpt-1195"
+all_model_checkpoint_paths: "dvcnn.ckpt-1196"
+all_model_checkpoint_paths: "dvcnn.ckpt-1197"
+all_model_checkpoint_paths: "dvcnn.ckpt-1198"
+all_model_checkpoint_paths: "dvcnn.ckpt-1199"
