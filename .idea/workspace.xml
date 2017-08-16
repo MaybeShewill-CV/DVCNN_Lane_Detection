@@ -1,23 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ebe746b3-2d6e-4d26-8beb-d6243d4c0859" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DVCNN/select_sample.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Extract_line_candidates/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Extract_line_candidates/config.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Extract_line_candidates/extract_candidates.sh" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DVCNN/data_provider.py" afterPath="$PROJECT_DIR$/DVCNN/data_provider.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DVCNN/lane_result.txt" afterPath="$PROJECT_DIR$/DVCNN/lane_result.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DVCNN/model/checkpoint" afterPath="$PROJECT_DIR$/DVCNN/model/checkpoint" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DVCNN/select_dvcnn_samples.py" afterPath="$PROJECT_DIR$/DVCNN/select_dvcnn_samples.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DVCNN/test_dvcnn.py" afterPath="$PROJECT_DIR$/DVCNN/test_dvcnn.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DVCNN/train_dvcnn.py" afterPath="$PROJECT_DIR$/DVCNN/train_dvcnn.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Extract_line_candidates/extract_candidate.py" afterPath="$PROJECT_DIR$/Extract_line_candidates/extract_candidate.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Extract_line_candidates/extract_roi_patch.py" afterPath="$PROJECT_DIR$/Extract_line_candidates/extract_roi_patch.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Global_Optimization/detect_lane_line.py" afterPath="$PROJECT_DIR$/Global_Optimization/detect_lane_line.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Global_Optimization/extract_roi.py" afterPath="$PROJECT_DIR$/Global_Optimization/extract_roi.py" />
-    </list>
+    <list default="true" id="ebe746b3-2d6e-4d26-8beb-d6243d4c0859" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,8 +15,8 @@
       <file leaf-file-name="extract_candidate.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Extract_line_candidates/extract_candidate.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="439">
-              <caret line="207" column="0" lean-forward="false" selection-start-line="207" selection-start-column="0" selection-end-line="207" selection-end-column="0" />
+            <state relative-caret-position="599">
+              <caret line="197" column="35" lean-forward="false" selection-start-line="197" selection-start-column="35" selection-end-line="197" selection-end-column="35" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -575,7 +559,7 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24958494" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39979124" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39979124" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32982844" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1006,8 +990,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Extract_line_candidates/extract_candidate.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="439">
-          <caret line="207" column="0" lean-forward="false" selection-start-line="207" selection-start-column="0" selection-end-line="207" selection-end-column="0" />
+        <state relative-caret-position="599">
+          <caret line="197" column="35" lean-forward="false" selection-start-line="197" selection-start-column="35" selection-end-line="197" selection-end-column="35" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
