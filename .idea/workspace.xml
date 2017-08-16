@@ -1,7 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ebe746b3-2d6e-4d26-8beb-d6243d4c0859" name="Default" comment="" />
+    <list default="true" id="ebe746b3-2d6e-4d26-8beb-d6243d4c0859" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/checkpoint" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-1195.data-00000-of-00001" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-1195.index" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-1195.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-1196.data-00000-of-00001" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-1196.index" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-1196.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-1197.data-00000-of-00001" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-1197.index" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-1197.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-1198.data-00000-of-00001" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-1198.index" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-1198.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-1199.data-00000-of-00001" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-1199.index" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-1199.meta" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DVCNN/lane_result.txt" afterPath="$PROJECT_DIR$/DVCNN/lane_result.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DVCNN/test_dvcnn.py" afterPath="$PROJECT_DIR$/DVCNN/test_dvcnn.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DVCNN/train_dvcnn.py" afterPath="$PROJECT_DIR$/DVCNN/train_dvcnn.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Global_Optimization/detect_lane_line.py" afterPath="$PROJECT_DIR$/Global_Optimization/detect_lane_line.py" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,23 +34,23 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="extract_candidate.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Extract_line_candidates/extract_candidate.py">
+      <file leaf-file-name="detect_lane_line.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Global_Optimization/detect_lane_line.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="599">
-              <caret line="197" column="35" lean-forward="false" selection-start-line="197" selection-start-column="35" selection-end-line="197" selection-end-column="35" />
+            <state relative-caret-position="642">
+              <caret line="214" column="24" lean-forward="false" selection-start-line="214" selection-start-column="24" selection-end-line="214" selection-end-column="24" />
               <folding>
-                <element signature="e#0#11#0" expanded="true" />
+                <element signature="e#66#75#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="extract_roi_patch.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Extract_line_candidates/extract_roi_patch.py">
+      <file leaf-file-name="dvcnn_classifier.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Global_Optimization/dvcnn_classifier.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="52" column="66" lean-forward="false" selection-start-line="74" selection-start-column="19" selection-end-line="74" selection-end-column="24" />
+            <state relative-caret-position="166">
+              <caret line="52" column="64" lean-forward="false" selection-start-line="52" selection-start-column="64" selection-end-line="52" selection-end-column="64" />
               <folding />
             </state>
           </provider>
@@ -37,11 +59,31 @@
       <file leaf-file-name="extract_roi.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Global_Optimization/extract_roi.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="60" column="49" lean-forward="true" selection-start-line="60" selection-start-column="49" selection-end-line="60" selection-end-column="49" />
+            <state relative-caret-position="406">
+              <caret line="66" column="49" lean-forward="false" selection-start-line="66" selection-start-column="16" selection-end-line="66" selection-end-column="49" />
               <folding>
                 <element signature="e#120#143#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="binarized_filter_result.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Extract_line_candidates/binarized_filter_result.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="53" column="38" lean-forward="false" selection-start-line="53" selection-start-column="38" selection-end-line="53" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="train_dvcnn.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DVCNN/train_dvcnn.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-440">
+              <caret line="19" column="26" lean-forward="false" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -98,24 +140,24 @@
         <option value="$PROJECT_DIR$/DVCNN/select_dvcnn_samples.py" />
         <option value="$PROJECT_DIR$/DVCNN/select_sample.py" />
         <option value="$PROJECT_DIR$/DVCNN/dvcnn_model.py" />
-        <option value="$PROJECT_DIR$/DVCNN/train_dvcnn.py" />
-        <option value="$PROJECT_DIR$/DVCNN/test_dvcnn.py" />
         <option value="$PROJECT_DIR$/DVCNN/data_provider.py" />
         <option value="$PROJECT_DIR$/Extract_line_candidates/binarized_filter_result.py" />
-        <option value="$PROJECT_DIR$/Global_Optimization/detect_lane_line.py" />
         <option value="$PROJECT_DIR$/Extract_line_candidates/config.py" />
         <option value="$PROJECT_DIR$/Extract_line_candidates/__init__.py" />
         <option value="$PROJECT_DIR$/Global_Optimization/extract_roi.py" />
-        <option value="$PROJECT_DIR$/Extract_line_candidates/extract_candidate.py" />
         <option value="$PROJECT_DIR$/Extract_line_candidates/extract_roi_patch.py" />
+        <option value="$PROJECT_DIR$/Extract_line_candidates/extract_candidate.py" />
+        <option value="$PROJECT_DIR$/DVCNN/test_dvcnn.py" />
+        <option value="$PROJECT_DIR$/DVCNN/train_dvcnn.py" />
+        <option value="$PROJECT_DIR$/Global_Optimization/detect_lane_line.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="67" />
-    <option name="y" value="-4" />
-    <option name="width" value="1853" />
-    <option name="height" value="1084" />
+    <option name="x" value="66" />
+    <option name="y" value="-11" />
+    <option name="width" value="1855" />
+    <option name="height" value="1092" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -133,8 +175,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -167,12 +207,14 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Extract_line_candidates" />
+              <option name="myItemId" value="DVCNN" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -201,7 +243,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.extract_roi_patch">
+  <component name="RunManager" selected="Python.detect_lane_line.py">
     <configuration default="false" name="extract_roi_patch" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -549,12 +591,12 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="-4" width="1853" height="1084" extended-state="6" />
+    <frame x="66" y="-11" width="1855" height="1092" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28666297" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29330382" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29123172" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47181627" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24958494" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -843,26 +885,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Global_Optimization/dvcnn_classifier.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="52" column="64" lean-forward="false" selection-start-line="52" selection-start-column="64" selection-end-line="52" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DVCNN/tboard/select_sample.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/DVCNN/tboard/select_sample.py" />
     <entry file="file://$PROJECT_DIR$/DVCNN/select_sample.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-98">
           <caret line="18" column="28" lean-forward="true" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -880,25 +907,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1430">
           <caret line="230" column="20" lean-forward="false" selection-start-line="230" selection-start-column="20" selection-end-line="230" selection-end-column="20" />
-          <folding>
-            <element signature="e#204#213#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DVCNN/train_dvcnn.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="186" column="45" lean-forward="true" selection-start-line="186" selection-start-column="45" selection-end-line="186" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DVCNN/test_dvcnn.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="218" column="49" lean-forward="false" selection-start-line="218" selection-start-column="39" selection-end-line="218" selection-end-column="49" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -906,25 +914,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
           <caret line="171" column="73" lean-forward="false" selection-start-line="171" selection-start-column="73" selection-end-line="171" selection-end-column="73" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Global_Optimization/detect_lane_line.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="100" column="0" lean-forward="true" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
-          <folding>
-            <element signature="e#66#75#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Extract_line_candidates/binarized_filter_result.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1597">
-          <caret line="74" column="4" lean-forward="false" selection-start-line="74" selection-start-column="4" selection-end-line="74" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -932,9 +921,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="660">
           <caret line="33" column="19" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="19" />
-          <folding>
-            <element signature="e#741#750#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -942,7 +928,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1280">
           <caret line="65" column="30" lean-forward="true" selection-start-line="65" selection-start-column="30" selection-end-line="65" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -950,39 +935,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Extract_line_candidates/extract_candidates.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Extract_line_candidates/extract_candidates.sh" />
     <entry file="file://$PROJECT_DIR$/Extract_line_candidates/config.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
           <caret line="14" column="38" lean-forward="false" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Global_Optimization/extract_roi.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="60" column="49" lean-forward="true" selection-start-line="60" selection-start-column="49" selection-end-line="60" selection-end-column="49" />
-          <folding>
-            <element signature="e#120#143#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Extract_line_candidates/extract_roi_patch.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
+        <state relative-caret-position="960">
           <caret line="52" column="66" lean-forward="false" selection-start-line="74" selection-start-column="19" selection-end-line="74" selection-end-column="24" />
           <folding />
         </state>
@@ -990,10 +956,62 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Extract_line_candidates/extract_candidate.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="599">
+        <state relative-caret-position="3940">
           <caret line="197" column="35" lean-forward="false" selection-start-line="197" selection-start-column="35" selection-end-line="197" selection-end-column="35" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DVCNN/test_dvcnn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="582">
+          <caret line="286" column="22" lean-forward="false" selection-start-line="286" selection-start-column="22" selection-end-line="286" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Extract_line_candidates/binarized_filter_result.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="53" column="38" lean-forward="false" selection-start-line="53" selection-start-column="38" selection-end-line="53" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Global_Optimization/extract_roi.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="406">
+          <caret line="66" column="49" lean-forward="false" selection-start-line="66" selection-start-column="16" selection-end-line="66" selection-end-column="49" />
+          <folding>
+            <element signature="e#120#143#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Global_Optimization/dvcnn_classifier.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="52" column="64" lean-forward="false" selection-start-line="52" selection-start-column="64" selection-end-line="52" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DVCNN/train_dvcnn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-440">
+          <caret line="19" column="26" lean-forward="false" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Global_Optimization/detect_lane_line.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="642">
+          <caret line="214" column="24" lean-forward="false" selection-start-line="214" selection-start-column="24" selection-end-line="214" selection-end-column="24" />
+          <folding>
+            <element signature="e#66#75#0" expanded="true" />
           </folding>
         </state>
       </provider>

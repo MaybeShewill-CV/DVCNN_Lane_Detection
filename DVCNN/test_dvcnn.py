@@ -247,8 +247,8 @@ def test_net_lane(model_path, weights_path, lane_dir, non_lane_dir):
                 if prediction == 1:
                     result.append(test_front_filename[index])
                 sys.stdout.write('\rPredicts {:d}/{:d} {:s} label: {:d}'.format(loops*batch_size + index,
-                                                                                  loop_times*batch_size,
-                                                                                  file_id, prediction))
+                                                                                loop_times*batch_size,
+                                                                                file_id, prediction))
                 time.sleep(0.0000001)
                 sys.stdout.flush()
             sys.stdout.write('\n')
@@ -264,6 +264,15 @@ def test_net_lane(model_path, weights_path, lane_dir, non_lane_dir):
 
 
 def select_lane_fv_sample(lane_result_file):
+    """
+    According the lane result text file to select the front view lane sample result
+    :param lane_result_file:
+    :return:
+    """
+    if not os.path.exists('/home/baidu/DataBase/Road_Center_Line_DataBase/'
+                          'DVCNN_SAMPLE_TEST/lane_line/front_view_select'):
+        os.makedirs('/home/baidu/DataBase/Road_Center_Line_DataBase/DVCNN_SAMPLE_TEST/lane_line/front_view_select')
+
     file = open(lane_result_file, 'r')
     total_count = len(file.readlines())
     file.close()
@@ -281,7 +290,7 @@ def select_lane_fv_sample(lane_result_file):
 
 
 if __name__ == '__main__':
-    test_net_lane(model_path='DVCNN/model_def/DVCNN.json', weights_path='DVCNN/model/dvcnn_fintune.ckpt-1199',
+    test_net_lane(model_path='DVCNN/model_def/DVCNN.json', weights_path='DVCNN/model/dvcnn.ckpt-1199',
                   lane_dir='/home/baidu/DataBase/Road_Center_Line_DataBase/DVCNN_SAMPLE_TEST/lane_line',
                   non_lane_dir='/home/baidu/DataBase/Road_Center_Line_DataBase/DVCNN_SAMPLE_TEST/non_lane_line')
     select_lane_fv_sample(lane_result_file='DVCNN/lane_result.txt')

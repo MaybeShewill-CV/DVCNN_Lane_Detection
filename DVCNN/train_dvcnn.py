@@ -17,7 +17,7 @@ def train_dvcnn(lane_dir, non_lane_dir):
     preprocessor = preprocess.Preprocessor()
     dvcnn_architecture = read_json_model('model_def/DVCNN.json')
 
-    training_epochs = 1200
+    training_epochs = 1000
     display_step = 1
     test_display_step = 100
 
@@ -87,7 +87,7 @@ def train_dvcnn(lane_dir, non_lane_dir):
         if not v.name[:-2].endswith('bias'):
             l2_loss += tf.nn.l2_loss(t=v, name='{}_l2_loss'.format(v.name[:-2]))
 
-    total_cost = cross_entropy_loss + l2_loss * 0.00001
+    total_cost = cross_entropy_loss
 
     # optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.0001).minimize(total_cost)
     optimizer = tf.train.MomentumOptimizer(momentum=0.9, learning_rate=0.001).minimize(cross_entropy_loss)
@@ -110,17 +110,17 @@ def train_dvcnn(lane_dir, non_lane_dir):
 
     # saver configuration
     saver = tf.train.Saver()
-    save_path = 'model/dvcnn_fintune.ckpt'
-    weight_path = 'model/dvcnn.ckpt-1199'
+    save_path = 'model/dvcnn.ckpt'
+    # weight_path = 'model/dvcnn.ckpt-1199'
 
     sess = tf.Session(config=config)
 
     with sess.as_default():
 
-        # init = tf.global_variables_initializer()
-        # sess.run(init)
+        init = tf.global_variables_initializer()
+        sess.run(init)
 
-        saver.restore(sess=sess, save_path=weight_path)
+        # saver.restore(sess=sess, save_path=weight_path)
 
         summary_writer = tf.summary.FileWriter(tboard_save_path)
         summary_writer.add_graph(sess.graph)
@@ -188,7 +188,6 @@ def train_dvcnn(lane_dir, non_lane_dir):
                 print('Epoch: {:04d} test_accuracy= {:9f}'.format(epoch + 1, test_accuracy))
 
             saver.save(sess=sess, save_path=save_path, global_step=epoch)
-
         print('Done')
 
 if __name__ == '__main__':

@@ -206,9 +206,9 @@ def main(top_view_dir):
         fv_file_dir = top_file_dir.replace('top', 'fv')
         fv_file_id = top_file_id.replace('top', 'fv')
         fv_file = ops.join(fv_file_dir, fv_file_id)
-
+        print('Detect {:s}'.format(top_file))
         detect_lane_line(top_view_image_file=top_file, front_view_image_file=fv_file,
-                         model_file='DVCNN/model_def/DVCNN.json', weights_file='DVCNN/model/dvcnn_fintune.ckpt-1199')
+                         model_file='DVCNN/model_def/DVCNN.json', weights_file='DVCNN/model/dvcnn.ckpt-1000')
     return
 
 
