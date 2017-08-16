@@ -1,6 +1,7 @@
 """
 Use weights hat-like filter to filter the top view image and extract the roi patch and its' corresponding roi patch in
-front view image and save them into data lane_line which are supposed to be selected by hands later
+front view image and save them into data lane_line which are supposed to be selected by hands later. This function is
+mainly used during training time to support the sample selection work
 """
 import os
 
@@ -97,7 +98,7 @@ def extract_and_save_roi_patch(top_image_dir, fv_image_dir, top_view_roi_save_pa
             fv_roi_save_id = '{:s}_{:d}.jpg'.format(fv_image_id[:-4], index)
             fv_roi_save_id = os.path.join(front_view_roi_save_path, fv_roi_save_id)
             cv2.imwrite(fv_roi_save_id, fv_roi)
-            extract_count += 1
+        extract_count += 1
         sys.stdout.write('\r>>Extract {:d}/{:d} {:s}'.format(extract_count, len(res_info), image_id))
         sys.stdout.flush()
     sys.stdout.write('\n')

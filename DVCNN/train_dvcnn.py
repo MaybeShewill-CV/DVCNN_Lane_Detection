@@ -110,14 +110,17 @@ def train_dvcnn(lane_dir, non_lane_dir):
 
     # saver configuration
     saver = tf.train.Saver()
-    save_path = 'model/dvcnn.ckpt'
+    save_path = 'model/dvcnn_fintune.ckpt'
+    weight_path = 'model/dvcnn.ckpt-1199'
 
     sess = tf.Session(config=config)
 
     with sess.as_default():
 
-        init = tf.global_variables_initializer()
-        sess.run(init)
+        # init = tf.global_variables_initializer()
+        # sess.run(init)
+
+        saver.restore(sess=sess, save_path=weight_path)
 
         summary_writer = tf.summary.FileWriter(tboard_save_path)
         summary_writer.add_graph(sess.graph)

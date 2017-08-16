@@ -60,13 +60,26 @@ def detect_lane_line(top_view_image_file, front_view_image_file, model_file, wei
         top_rois_image = top_image_patch[top_roi_bndbox[1]:top_roi_bndbox[1]+top_roi_bndbox[3],
                                          top_roi_bndbox[0]:top_roi_bndbox[0]+top_roi_bndbox[2],
                                          :]
+        cv2.rectangle(top_image_patch, (top_roi_bndbox[0], top_roi_bndbox[1]),  # pt1
+                      (top_roi_bndbox[0] + top_roi_bndbox[2], top_roi_bndbox[1] + top_roi_bndbox[3]),  # pt2
+                      (0, 255, 0),  # color
+                      2)  # thickness
         top_rois_image = cv2.resize(src=top_rois_image, dsize=(64, 64))
         top_rois.append(top_rois_image)
         fv_rois_image = fv_image[fv_roi_bndbox[1]:fv_roi_bndbox[1]+fv_roi_bndbox[3],
                                  fv_roi_bndbox[0]:fv_roi_bndbox[0]+fv_roi_bndbox[2],
                                  :]
+        cv2.rectangle(fv_image, (fv_roi_bndbox[0], fv_roi_bndbox[1]),  # pt1
+                      (fv_roi_bndbox[0] + fv_roi_bndbox[2], fv_roi_bndbox[1] + fv_roi_bndbox[3]),  # pt2
+                      (0, 255, 0),  # color
+                      2)  # thickness
         fv_rois_image = cv2.resize(src=fv_rois_image, dsize=(128, 128))
         fv_rois.append(fv_rois_image)
+    # plt.figure('Roi Top Image')
+    # plt.imshow(top_image_patch[:, :, (2, 1, 0)])
+    # plt.figure('Roi Fv Image')
+    # plt.imshow(fv_image[:, :, (2, 1, 0)])
+    # plt.show()
 
     dvcnnclassifier = DVCNNClassifier(model_file=model_file, weights_file=weights_file)
     predictions = np.array(dvcnnclassifier.predict(top_view_image_list=top_rois, front_view_image_list=fv_rois))
@@ -101,18 +114,18 @@ def detect_lane_line(top_view_image_file, front_view_image_file, model_file, wei
         # draw top view image rois
         cv2.rectangle(top_image_patch, (top_roi_bndbox[0], top_roi_bndbox[1]),  # pt1
                       (top_roi_bndbox[0] + top_roi_bndbox[2], top_roi_bndbox[1] + top_roi_bndbox[3]),  # pt2
-                      (0, 255, 0),  # color
+                      (0, 0, 255),  # color
                       2)  # thickness
         # write the dvcnn score
         cv2.putText(top_image_patch, '{:5f}'.format(top_roi_dvcnn_score), (top_roi_bndbox[0]+5, top_roi_bndbox[1]+5),
-                    cv2.FONT_HERSHEY_PLAIN, 1, (0, 0, 255))
+                    cv2.FONT_HERSHEY_PLAIN, 1, (255, 0, 0))
         # draw front view image rois
         cv2.rectangle(fv_image, (fv_roi_bndbox[0], fv_roi_bndbox[1]),  # pt1
                       (fv_roi_bndbox[0] + fv_roi_bndbox[2], fv_roi_bndbox[1] + fv_roi_bndbox[3]),  # pt2
-                      (0, 255, 0),  # color
+                      (0, 0, 255),  # color
                       2)  # thickness
         cv2.putText(fv_image, '{:5f}'.format(fv_roi_dvcnn_score), (fv_roi_bndbox[0]+10, fv_roi_bndbox[1]+10),
-                    cv2.FONT_HERSHEY_PLAIN, 1, (0, 0, 255))
+                    cv2.FONT_HERSHEY_PLAIN, 1, (255, 0, 0))
     plt.figure('Front view with DVCNN score')
     plt.imshow(fv_image[:, :, (2, 1, 0)])
     plt.figure('Top view with DVCNN score')
@@ -176,7 +189,7 @@ def detect_lane_line(top_view_image_file, front_view_image_file, model_file, wei
         count_index += 1
     # plt.figure('Top view with final lane line and optimization score')
     # plt.imshow(top_image_patch_copy[:, :, (2, 1, 0)])
-    # plt.figure('Fuck')
+    # plt.figure('Hat-like Filter Response Image')
     # plt.imshow(top_image_patch_copy2, cmap='gray')
     plt.show()
     return
@@ -195,7 +208,7 @@ def main(top_view_dir):
         fv_file = ops.join(fv_file_dir, fv_file_id)
 
         detect_lane_line(top_view_image_file=top_file, front_view_image_file=fv_file,
-                         model_file='DVCNN/model_def/DVCNN.json', weights_file='DVCNN/model/dvcnn.ckpt-1199')
+                         model_file='DVCNN/model_def/DVCNN.json', weights_file='DVCNN/model/dvcnn_fintune.ckpt-1199')
     return
 
 

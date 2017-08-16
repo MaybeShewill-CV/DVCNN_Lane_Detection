@@ -170,26 +170,5 @@ class DataProvider(object):
             front_file_id = top_file_id.replace('top', 'fv')
             label = list(sample_list[id].values())[0]
             front_file_name = os.path.join(front_file_dir, front_file_id)
-            # front_file_name = self.__find_fv_image_id(top_file_name=top_file_name, label=label)
             result.append((top_file_name, front_file_name, label))
         return result
-
-
-# def main():
-#     provider = DataProvider('data/lane_line', 'data/not_lane_line')
-#     for i in range(1500):
-#         result = provider.next_batch(batch_size=54)
-#         if len(result) != 54:
-#             print('Epoch: {:d} batch_size: {:d}'.format(i, len(result)))
-#     print('Done')
-#
-#
-# if __name__ == '__main__':
-#     main()
-
-
-
-
-
-
-

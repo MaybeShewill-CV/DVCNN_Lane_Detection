@@ -2,8 +2,9 @@ import math
 import cv2
 import numpy as np
 import tensorflow as tf
-import matplotlib.pyplot as plt
+import time
 import os
+import sys
 try:
     from cv2 import cv2
 except ImportError:
@@ -11,6 +12,7 @@ except ImportError:
 
 import dataset_util
 import filter_util
+from config import cfg
 
 
 def __calculate_line_degree(pt1, pt2):
@@ -132,7 +134,8 @@ def extract_line_candidates(image_file_dir, image_flag):
     dataset = dataset_util.Dataset(image_file_dir, image_flag)
     image_file_list = dataset.get_filelist()
     image_file_nums = dataset.get_filenums()
-    whatlikefilter = filter_util.WHatLikeFilter([9, 4])
+    whatlikefilter = filter_util.WHatLikeFilter([cfg.TRAIN.HAT_LIKE_FILTER_WINDOW_HEIGHT,
+                                                 cfg.TRAIN.HAT_LIKE_FILTER_WINDOW_WIDTH])
 
     image_filename_queue = tf.train.string_input_producer(image_file_list, shuffle=False)
     image_reader = tf.WholeFileReader()
@@ -154,7 +157,8 @@ def extract_line_candidates(image_file_dir, image_flag):
         coord = tf.train.Coordinator()
         threads = tf.train.start_queue_runners(coord=coord)
 
-        epochs = math.ceil(image_file_nums / 128)
+        epochs = int(math.ceil(image_file_nums / 128))  # prevent some image are not processed so use math.ceil
+
         for i in range(epochs):
             # apply weight hat-like filter function
             filter_result = sess.run(whatlikefilter.filter(image_batch))
@@ -162,7 +166,10 @@ def extract_line_candidates(image_file_dir, image_flag):
                 # apply image threshold and components extraction
                 rotrect_candidatas_list.append(__extract_line_from_filtered_image(filter_image)['rotate_rect_list'])
                 bndrect_candidates_list.append(__extract_line_from_filtered_image(filter_image)['bounding_rect_list'])
-
+            sys.stdout.write('\r>>Processing what like filtering {:d}-{:d}/{:d}'.format(i*128, i*128+128, epochs*128))
+            sys.stdout.flush()
+        sys.stdout.write('\n')
+        sys.stdout.flush()
         coord.request_stop()
         coord.join(threads=threads)
 
@@ -185,13 +192,16 @@ def extract_all(top_file_dir, is_vis=False, vis_result_save_path=None):
         os.makedirs(vis_result_save_path)
 
     # file in res[i] and image_file_list[i] matches each other
+    t_start = time.time()
     result = extract_line_candidates(top_file_dir, 'jpg')
+    print('WHat like filter complete cost time: {:5f}s'.format(time.time() - t_start))
     image_file_list = result['image_file_list']
     rrect_list_all = result['rotate_rect_candidates']
     bndrect_list_all = result['bounding_rect_candidates']
 
     res_info_dict = dict()
 
+    t_start = time.time()
     for i, filename in enumerate(image_file_list):
         image = cv2.imread(filename, cv2.IMREAD_COLOR)
         [_, image_id] = os.path.split(filename)
@@ -214,25 +224,12 @@ def extract_all(top_file_dir, is_vis=False, vis_result_save_path=None):
                               0)  # thickness
             res_save_path = os.path.join(vis_result_save_path, image_id)
             cv2.imwrite(res_save_path, image)
-            print('Extrct {:s} done with vis'.format(image_id))
+            sys.stdout.write('\r>>Extrct {:d}/{:d} {:s} done with vis'.format(i+1, len(image_file_list), image_id))
+            sys.stdout.flush()
         else:
-            print('Extrct {:s} done without vis'.format(image_id))
-    print('Extraction complete!')
+            sys.stdout.write('\r>>Extrct {:d}/{:d} {:s} done without vis'.format(i+1, len(image_file_list), image_id))
+            sys.stdout.flush()
+    sys.stdout.write('\n')
+    sys.stdout.flush()
+    print('Extraction complete cost time {:5f}s'.format(time.time() - t_start))
     return res_info_dict
-
-
-# if __name__ == '__main__':
-#     parse = argparse.ArgumentParser(description='Extract line candidates from top view images')
-#     parse.add_argument('--top_file_dir', type=str, default=None, help='Where you store the top view images')
-#     parse.add_argument('--extract_save_dir', type=str, default=None, help='Where you store the candidates result')
-#
-#     args = parse.parse_args()
-#
-#     if not args.top_file_dir:
-#         raise ValueError('You must supply top view file dir with --top_file_dir')
-#     if not args.extract_save_dir:
-#         raise ValueError('You must supply result storage path with --extract_save_dir')
-#
-#     res_info = extract_all(args.top_file_dir, args.extract_save_dir)
-if __name__ == '__main__':
-    extract_line_candidates(image_file_dir='data/top_view', image_flag='jpg')

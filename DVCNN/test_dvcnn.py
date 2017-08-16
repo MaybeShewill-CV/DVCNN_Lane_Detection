@@ -205,13 +205,16 @@ def test_net_lane(model_path, weights_path, lane_dir, non_lane_dir):
 
     sess = tf.Session(config=config)
 
-    loop_times = 164
+    loop_times = 128
     batch_size = 1000
 
     with sess.as_default():
         saver.restore(sess=sess, save_path=weights_path)
 
         for loops in range(loop_times):
+            print('******Start epoch {:d} process {:d}-{:d}/{:d}******'.format(loops, loops*batch_size,
+                                                                               loops*batch_size+batch_size,
+                                                                               loop_times*batch_size))
             t_start = time.time()
             test_batch_data = provider.next_batch(batch_size=batch_size)
             test_top_input = []
@@ -243,10 +246,10 @@ def test_net_lane(model_path, weights_path, lane_dir, non_lane_dir):
                 [_, file_id] = os.path.split(test_front_filename[index])
                 if prediction == 1:
                     result.append(test_front_filename[index])
-                sys.stdout.write('\r>>Predicts {:d}/{:d} {:s} label: {:d}'.format(loops*batch_size + index,
+                sys.stdout.write('\rPredicts {:d}/{:d} {:s} label: {:d}'.format(loops*batch_size + index,
                                                                                   loop_times*batch_size,
                                                                                   file_id, prediction))
-                time.sleep(0.000001)
+                time.sleep(0.0000001)
                 sys.stdout.flush()
             sys.stdout.write('\n')
             sys.stdout.flush()
@@ -262,13 +265,15 @@ def test_net_lane(model_path, weights_path, lane_dir, non_lane_dir):
 
 def select_lane_fv_sample(lane_result_file):
     file = open(lane_result_file, 'r')
-    for index, filename in enumerate(file.readlines()):
-        filename = filename[0:-1]
-        new_filename = filename.replace('front_view', 'front_view_select')
-        shutil.copyfile(filename, new_filename)
-        sys.stdout.write('\r>>Copy {:d}/{:d} {:s}'.format(index+1, len(file.readlines()),
-                                                          os.path.split(new_filename)[1]))
-        sys.stdout.flush()
+    total_count = len(file.readlines())
+    file.close()
+    with open(lane_result_file, 'r') as file:
+        for index, filename in enumerate(file.readlines()):
+            filename = filename[0:-1]
+            new_filename = filename.replace('front_view', 'front_view_select')
+            shutil.copyfile(filename, new_filename)
+            sys.stdout.write('\r>>Copy {:d}/{:d} {:s}'.format(index+1, total_count, os.path.split(new_filename)[1]))
+            sys.stdout.flush()
     sys.stdout.write('\n')
     sys.stdout.flush()
     print('Done')
@@ -276,10 +281,7 @@ def select_lane_fv_sample(lane_result_file):
 
 
 if __name__ == '__main__':
-    test_net_lane(model_path='DVCNN/model_def/DVCNN.json', weights_path='DVCNN/model/dvcnn.ckpt-1199',
+    test_net_lane(model_path='DVCNN/model_def/DVCNN.json', weights_path='DVCNN/model/dvcnn_fintune.ckpt-1199',
                   lane_dir='/home/baidu/DataBase/Road_Center_Line_DataBase/DVCNN_SAMPLE_TEST/lane_line',
                   non_lane_dir='/home/baidu/DataBase/Road_Center_Line_DataBase/DVCNN_SAMPLE_TEST/non_lane_line')
     select_lane_fv_sample(lane_result_file='DVCNN/lane_result.txt')
-    # test_net(model_path='DVCNN/model_def/DVCNN.json', weights_path='DVCNN/model/dvcnn.ckpt-1199',
-    #          lane_dir='/home/baidu/DataBase/Road_Center_Line_DataBase/DVCNN_SAMPLE_TEST/lane_line',
-    #          non_lane_dir='/home/baidu/DataBase/Road_Center_Line_DataBase/DVCNN_SAMPLE_TEST/non_lane_line')

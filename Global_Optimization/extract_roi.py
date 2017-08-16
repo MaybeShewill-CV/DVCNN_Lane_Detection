@@ -3,7 +3,6 @@ Given the top view image, return the roi list extracted by the weight hat like f
 """
 import tensorflow as tf
 import numpy as np
-import matplotlib.pyplot as plt
 import cv2
 try:
     from cv2 import cv2
@@ -12,6 +11,7 @@ except ImportError:
 
 from Extract_line_candidates.filter_util import WHatLikeFilter
 from Extract_line_candidates.binarized_filter_result import binarized_whatlike_filtered_image
+from Extract_line_candidates.config import cfg
 
 
 def whatlike_filter_image(image):
@@ -28,7 +28,7 @@ def whatlike_filter_image(image):
     assert image.shape[0] == image.shape[1] == 325
 
     # initialize the weight hat like filter
-    whatlikefilter = WHatLikeFilter([9, 4])
+    whatlikefilter = WHatLikeFilter([cfg.TEST.HAT_LIKE_FILTER_WINDOW_HEIGHT, cfg.TEST.HAT_LIKE_FILTER_WINDOW_WIDTH])
 
     # set the input tensor
     input_tensor = tf.placeholder(dtype=tf.float32, shape=[1, 325, 325, 1], name='Input_Image')

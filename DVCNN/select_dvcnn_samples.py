@@ -11,8 +11,6 @@ try:
 except ImportError:
     pass
 
-from spilt_roi import match_str, find_substr_itimes
-
 
 class Samples(object):
     def __init__(self, fv_samples_dir, top_samples_dir, lane_fv_samples_dir):
