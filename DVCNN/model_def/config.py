@@ -16,7 +16,7 @@ __C.TRAIN.HAT_LIKE_FILTER_WINDOW_WIDTH = 3
 # Set the weighted hat like filter window height
 __C.TRAIN.HAT_LIKE_FILTER_WINDOW_HEIGHT = 7
 # Set the DVCNN training epochs
-__C.TRAIN.EPOCHS = 1500
+__C.TRAIN.EPOCHS = 2500
 # Set the display step
 __C.TRAIN.DISPLAY_STEP = 1
 # Set the test display step during training process
