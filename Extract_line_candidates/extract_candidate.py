@@ -1,10 +1,12 @@
 import math
+import os
+import sys
+import time
+
 import cv2
 import numpy as np
 import tensorflow as tf
-import time
-import os
-import sys
+
 try:
     from cv2 import cv2
 except ImportError:
@@ -12,7 +14,7 @@ except ImportError:
 
 import dataset_util
 import filter_util
-from config import cfg
+from model_def.config import cfg
 
 
 def __calculate_line_degree(pt1, pt2):

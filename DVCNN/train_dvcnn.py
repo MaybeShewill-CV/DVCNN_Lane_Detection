@@ -5,11 +5,13 @@ try:
     from cv2 import cv2
 except ImportError:
     pass
+from pprint import pprint
 
 import preprocess
 import data_provider
 import dvcnn_model
 from cnn_util import read_json_model
+from model_def.config import cfg
 
 
 def train_dvcnn(lane_dir, non_lane_dir):
@@ -17,9 +19,9 @@ def train_dvcnn(lane_dir, non_lane_dir):
     preprocessor = preprocess.Preprocessor()
     dvcnn_architecture = read_json_model('model_def/DVCNN.json')
 
-    training_epochs = 1000
-    display_step = 1
-    test_display_step = 100
+    training_epochs = cfg.TRAIN.EPOCHS
+    display_step = cfg.TRAIN.DISPLAY_STEP
+    test_display_step = cfg.TRAIN.TEST_DISPLAY_STEP
 
     train_top_input_tensor = tf.placeholder(dtype=tf.float32, shape=[None, 64, 64, 3], name='top_input')
     train_front_input_tensor = tf.placeholder(dtype=tf.float32, shape=[None, 128, 128, 3], name='front_input')
@@ -90,12 +92,13 @@ def train_dvcnn(lane_dir, non_lane_dir):
     total_cost = cross_entropy_loss
 
     # optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.0001).minimize(total_cost)
-    optimizer = tf.train.MomentumOptimizer(momentum=0.9, learning_rate=0.001).minimize(cross_entropy_loss)
+    optimizer = tf.train.MomentumOptimizer(momentum=cfg.TRAIN.MOMENTUM,
+                                           learning_rate=cfg.TRAIN.LEARNING_RATE).minimize(cross_entropy_loss)
 
     # configuration
     config = tf.ConfigProto()
-    config.gpu_options.per_process_gpu_memory_fraction = 0.8
-    config.gpu_options.allow_growth = False
+    config.gpu_options.per_process_gpu_memory_fraction = cfg.TRAIN.GPU_MEMORY_FRACTION
+    config.gpu_options.allow_growth = cfg.TRAIN.TF_ALLOW_GROWTH
 
     # tf summary
     tboard_save_path = 'tboard'
@@ -115,6 +118,9 @@ def train_dvcnn(lane_dir, non_lane_dir):
 
     sess = tf.Session(config=config)
 
+    print('DVCNN training parameters are as follows:')
+    pprint(cfg)
+
     with sess.as_default():
 
         init = tf.global_variables_initializer()
@@ -132,8 +138,8 @@ def train_dvcnn(lane_dir, non_lane_dir):
             test_top_input = []
             test_front_input = []
             test_label_input = []
-            train_batch_data = provider.next_batch(batch_size=128)
-            test_batch_data = provider.next_batch(batch_size=128)
+            train_batch_data = provider.next_batch(batch_size=cfg.TRAIN.BATCH_SIZE)
+            test_batch_data = provider.next_batch(batch_size=cfg.TRAIN.VAL_BATCH_SIZE)
             for j in range(len(train_batch_data)):
                 top_file_name = train_batch_data[j][0]
                 front_file_name = train_batch_data[j][1]

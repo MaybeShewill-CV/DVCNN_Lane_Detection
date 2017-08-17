@@ -1,9 +1,10 @@
 """
 Given the top view image, return the roi list extracted by the weight hat like filter and thresholding function
 """
-import tensorflow as tf
-import numpy as np
 import cv2
+import numpy as np
+import tensorflow as tf
+
 try:
     from cv2 import cv2
 except ImportError:
@@ -11,10 +12,10 @@ except ImportError:
 
 from Extract_line_candidates.filter_util import WHatLikeFilter
 from Extract_line_candidates.binarized_filter_result import binarized_whatlike_filtered_image
-from Extract_line_candidates.config import cfg
+from model_def.config import cfg
 
 
-def whatlike_filter_image(image):
+def __whatlike_filter_image(image):
     """
     Use weight hat like filter filter the single image
     :param image:
@@ -61,7 +62,7 @@ def extract_roi_candidates(image):
         raise ValueError('Image data is invalid')
 
     # apply the weight hat like filter
-    filtered_image = whatlike_filter_image(image=image)
+    filtered_image = __whatlike_filter_image(image=image)
 
     # apply OTSU threshold and components analysis function to extract the candidates rois
     roi_pairs = binarized_whatlike_filtered_image(img=filtered_image[0])
