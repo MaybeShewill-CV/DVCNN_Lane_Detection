@@ -1,14 +1,22 @@
+"""
+Some perspective related function. The control points are selected by hands
+"""
 import numpy as np
-import cv2
+import argparse
 import os
 import sys
+import time
+import cv2
 try:
     from cv2 import cv2
 except ImportError:
     pass
 
-front_view_ctrl_point = [(98, 701), (770, 701), (291, 541), (645, 541)]
-top_view_ctrl_point = [(425, 701), (525, 701), (425, 600), (525, 600)]
+from Global_Configuration.config import cfg
+
+__front_view_ctrl_point = cfg.ROI.CPT_FV
+__top_view_ctrl_point = cfg.ROI.CPT_TOP
+__warped_size = cfg.ROI.WARPED_SIZE
 
 
 def inverse_perspective_map(image):
@@ -17,11 +25,11 @@ def inverse_perspective_map(image):
     :param image:
     :return:
     """
-    fv_ctrl_point = np.array(front_view_ctrl_point).astype(dtype=np.float32)
-    top_ctrl_point = np.array(top_view_ctrl_point).astype(dtype=np.float32)
+    fv_ctrl_point = np.array(__front_view_ctrl_point).astype(dtype=np.float32)
+    top_ctrl_point = np.array(__top_view_ctrl_point).astype(dtype=np.float32)
 
     warp_transform = cv2.getPerspectiveTransform(src=fv_ctrl_point, dst=top_ctrl_point)
-    warped_image = cv2.warpPerspective(src=image, M=warp_transform, dsize=(1000, 700))
+    warped_image = cv2.warpPerspective(src=image, M=warp_transform, dsize=__warped_size)
     return warped_image
 
 
@@ -31,11 +39,11 @@ def perspective_map(image):
     :param image:
     :return:
     """
-    top_ctrl_point = np.array(top_view_ctrl_point).astype(dtype=np.float32)
-    fv_ctrl_point = np.array(front_view_ctrl_point).astype(dtype=np.float32)
+    top_ctrl_point = np.array(__top_view_ctrl_point).astype(dtype=np.float32)
+    fv_ctrl_point = np.array(__front_view_ctrl_point).astype(dtype=np.float32)
 
     warp_transform = cv2.getPerspectiveTransform(src=top_ctrl_point, dst=fv_ctrl_point)
-    warped_image = cv2.warpPerspective(src=image, M=warp_transform, dsize=(1000, 700))
+    warped_image = cv2.warpPerspective(src=image, M=warp_transform, dsize=__warped_size)
     return warped_image
 
 
@@ -43,10 +51,10 @@ def inverse_perspective_point(pt1):
     """
     map point in front view image into top view image
     :param pt1:
-    :return:
+    :return: pt2 [x, y]
     """
-    fv_ctrl_point = np.array(front_view_ctrl_point).astype(dtype=np.float32)
-    top_ctrl_point = np.array(top_view_ctrl_point).astype(dtype=np.float32)
+    fv_ctrl_point = np.array(__front_view_ctrl_point).astype(dtype=np.float32)
+    top_ctrl_point = np.array(__top_view_ctrl_point).astype(dtype=np.float32)
 
     warp_transform = cv2.getPerspectiveTransform(src=fv_ctrl_point, dst=top_ctrl_point)
     pt_warp = cv2.perspectiveTransform(src=pt1, m=warp_transform)
@@ -57,22 +65,27 @@ def perspective_point(pt1):
     """
     map point in top view image into front view image
     :param pt1:
-    :return:
+    :return: pt2 [x, y]
     """
     pt1 = np.array([[pt1]], dtype=np.float32)
 
-    top_ctrl_point = np.array(top_view_ctrl_point).astype(dtype=np.float32)
-    fv_ctrl_point = np.array(front_view_ctrl_point).astype(dtype=np.float32)
+    top_ctrl_point = np.array(__top_view_ctrl_point).astype(dtype=np.float32)
+    fv_ctrl_point = np.array(__front_view_ctrl_point).astype(dtype=np.float32)
 
     warp_transform = cv2.getPerspectiveTransform(src=top_ctrl_point, dst=fv_ctrl_point)
     pt_warp = cv2.perspectiveTransform(src=pt1, m=warp_transform)
     return pt_warp[0, 0, :]
 
 
-def inverse():
-    fv_image_src = '/home/baidu/DataBase/Road_Center_Line_DataBase/Origin/front_view'
-    top_image_path = '/home/baidu/DataBase/Road_Center_Line_DataBase/Origin/top_view'
-
+def inverse_perspective_map_fvfiles(fv_image_src, top_image_path):
+    """
+    Inverse front view images to top view images
+    :param fv_image_src: source front view images
+    :param top_image_path: path to store inverse perspective mapped top view images
+    :return:
+    """
+    if not os.path.isdir(fv_image_src):
+        raise ValueError('Folder {:s} doesn\'t exist'.format(fv_image_src))
     if not os.path.exists(top_image_path):
         os.makedirs(top_image_path)
 
@@ -91,4 +104,14 @@ def inverse():
     return
 
 if __name__ == '__main__':
-    inverse()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('fv_image_dir', type=str, help='The path you store the front view image')
+    parser.add_argument('top_image_dir', type=str, help='The path you store the inverse perspective top view images')
+
+    args = parser.parse_args()
+
+    t_start = time.time()
+    inverse_perspective_map_fvfiles(fv_image_src=args.fv_image_dir, top_image_path=args.top_image_dir)
+    print('Inverse perspective done cost time {:5f}s'.format(time.time() - t_start))
+    # inverse_perspective_map_files(fv_image_src='/home/baidu/DataBase/Road_Center_Line_DataBase/Origin/Test/front_view',
+    #                               top_image_path='/home/baidu/DataBase/Road_Center_Line_DataBase/Origin/Test/top_view')

@@ -12,7 +12,7 @@ except ImportError:
 
 from Extract_line_candidates.filter_util import WHatLikeFilter
 from Extract_line_candidates.binarized_filter_result import binarized_whatlike_filtered_image
-from model_def.config import cfg
+from Global_Configuration.config import cfg
 
 
 def __whatlike_filter_image(image):

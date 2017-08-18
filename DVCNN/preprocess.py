@@ -1,9 +1,15 @@
+"""
+Define the image preprocessor class which is mainly used for data augmentation
+"""
 import tensorflow as tf
 
 
 class Preprocessor(object):
     def __init__(self):
         pass
+
+    def __str__(self):
+        return 'Image Preprocessor object'
 
     @staticmethod
     def __augmentation_random_crop(img, crop_size):

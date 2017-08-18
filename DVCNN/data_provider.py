@@ -22,7 +22,7 @@ Data file for training DVCNN should be structured as follows:
 import os
 import numpy as np
 
-from spilt_roi import find_substr_itimes
+from Global_Configuration.utils import find_substr_itimes
 
 
 class DataProvider(object):
@@ -47,6 +47,11 @@ class DataProvider(object):
         self.__index = np.random.permutation(self.__sample_nums)
         self.__lane_dir = lane_dir
         self.__non_lane_dir = not_lane_dir
+
+    def __str__(self):
+        info = 'Positive samples: {:d} Negative samples: {:d}'.format(len(self.__lane_top_sample_list),
+                                                                      len(self.__nonlane_top_sample_list))
+        return info
 
     @staticmethod
     def __init_lane_sample_list(lane_dir):

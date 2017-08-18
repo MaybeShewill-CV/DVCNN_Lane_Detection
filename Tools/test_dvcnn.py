@@ -8,15 +8,16 @@ import matplotlib.pyplot as plt
 import os
 import numpy as np
 import shutil
+import argparse
 import cv2
 try:
     from cv2 import cv2
 except ImportError:
     pass
 
-import data_provider
+from DVCNN import data_provider
 
-from cnn_util import conv2d, batch_norm, activate, max_pool, fully_connect, concat, read_json_model
+from DVCNN.cnn_util import conv2d, batch_norm, activate, max_pool, fully_connect, concat, read_json_model
 
 
 def build_dvcnn(top_view_input, front_view_input, dvcnn_architecture):
@@ -116,11 +117,13 @@ def test_net(model_path, weights_path, lane_dir, non_lane_dir):
 
     test_top_input_tensor = tf.placeholder(dtype=tf.float32, shape=[None, 64, 64, 3], name='top_input')
     test_front_input_tensor = tf.placeholder(dtype=tf.float32, shape=[None, 128, 128, 3], name='front_input')
+    test_label_input_tensor = tf.placeholder(dtype=tf.float32, shape=[None, 2], name='label_input')
 
-    test_batch_data = provider.next_batch(batch_size=640)
+    test_batch_data = provider.next_batch(batch_size=396)
     test_top_input = []
     test_front_input = []
     test_label = []
+    test_label_input = []
     test_front_filename = []
     for index, test_data in enumerate(test_batch_data):
         top_file_name = test_data[0]
@@ -139,6 +142,13 @@ def test_net(model_path, weights_path, lane_dir, non_lane_dir):
         test_label.append(label)
         test_front_filename.append(front_file_name)
 
+    test_label_input = test_label.copy()
+    for kk in range(len(test_label_input)):
+        if test_label[kk] == 1:
+            test_label_input[kk] = [0, 1]
+        else:
+            test_label_input[kk] = [1, 0]
+
     dvcnn_out = build_dvcnn(top_view_input=test_top_input_tensor,
                             front_view_input=test_front_input_tensor,
                             dvcnn_architecture=dvcnn_architecture)
@@ -154,16 +164,24 @@ def test_net(model_path, weights_path, lane_dir, non_lane_dir):
     with sess.as_default():
         saver.restore(sess=sess, save_path=weights_path)
 
-        prediction, fv_image_list = sess.run([preds, test_front_input_tensor],
-                                             feed_dict={test_front_input_tensor: test_front_input,
-                                                        test_top_input_tensor: test_top_input})
+        prediction, fv_image_list, top_image_list, gt_label_list = sess.run(
+            [preds, test_front_input_tensor, test_top_input_tensor, test_label_input_tensor],
+            feed_dict={test_front_input_tensor: test_front_input, test_top_input_tensor: test_top_input,
+                       test_label_input_tensor: test_label_input})
+
         diff = prediction - test_label
         correct_prediction = np.count_nonzero(diff == 0)
         accuracy = correct_prediction / len(test_label)
+        print('******Image File ID****** ***GT Label*** ***Prediction label***')
         for index, fv_image in enumerate(fv_image_list):
-            print('Image file is {:s} and label is {:d}'.format(test_front_filename[index], prediction[index]))
-            plt.imshow(np.uint8(fv_image[:, :, (2, 1, 0)]))
-            plt.show()
+            file_id = os.path.split(test_front_filename[index])[1]
+            print('***{:s}*** ***  {:d}  *** ***  {:d}  ***'.format(file_id, np.argmax(gt_label_list[index], axis=0),
+                                                                    prediction[index]))
+            # plt.figure('Front View Image')
+            # plt.imshow(np.uint8(fv_image[:, :, (2, 1, 0)]))
+            # plt.figure('Top View Image')
+            # plt.imshow(np.uint8(top_image_list[index][:, :, (2, 1, 0)]))
+            # plt.show()
         print('Total test sample is {:d} lane sample nums: {:d} non lane samples nums: {:d}'.
               format(len(test_label), lane_sample_nums, non_lane_sample_nums))
         print('Predicts {:d} images {:d} is correct accuracy is {:4f}'.format(len(test_label), correct_prediction,
@@ -285,12 +303,20 @@ def select_lane_fv_sample(lane_result_file):
             sys.stdout.flush()
     sys.stdout.write('\n')
     sys.stdout.flush()
-    print('Done')
     return
 
 
 if __name__ == '__main__':
-    test_net_lane(model_path='DVCNN/model_def/DVCNN.json', weights_path='DVCNN/model/dvcnn.ckpt-1199',
-                  lane_dir='/home/baidu/DataBase/Road_Center_Line_DataBase/DVCNN_SAMPLE_TEST/lane_line',
-                  non_lane_dir='/home/baidu/DataBase/Road_Center_Line_DataBase/DVCNN_SAMPLE_TEST/non_lane_line')
-    select_lane_fv_sample(lane_result_file='DVCNN/lane_result.txt')
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--model_path', type=str, help='Where you save the DVCNN model definition json file')
+    parser.add_argument('--weights_path', type=str, help='Where you save the DVCNN weights file')
+    parser.add_argument('--lane_line_dir', type=str, help='Where you store the lane line samples')
+    parser.add_argument('--non_lane_line_dir', type=str, help='Where you store the non lane line samples')
+
+    args = parser.parse_args()
+
+    # test_net_lane(model_path=args.model_path, weights_path=args.weights_path, lane_dir=args.lane_line_dir,
+    #               non_lane_dir=args.non_lane_line_dir)
+    # select_lane_fv_sample(lane_result_file='DVCNN/lane_result.txt')
+    test_net(model_path=args.model_path, weights_path=args.weights_path, lane_dir=args.lane_line_dir,
+             non_lane_dir=args.non_lane_line_dir)

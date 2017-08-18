@@ -10,6 +10,9 @@ class WHatLikeFilter(object):
         self.__ksize = filter_size  # [height, width]
         return
 
+    def __str__(self):
+        return 'WHatLikeFilter with filter size [{:d}, {:d}]'.format(self.__ksize[0], self.__ksize[1])
+
     @staticmethod
     def __init_filter_weights(filter_size):
         """

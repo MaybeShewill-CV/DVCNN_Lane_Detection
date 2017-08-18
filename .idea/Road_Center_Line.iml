@@ -5,6 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/Extract_line_candidates" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/DVCNN" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Global_Optimization" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Global_Configuration" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

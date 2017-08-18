@@ -7,6 +7,7 @@ import os.path as ops
 import numpy as np
 import shutil
 import sys
+import time
 import cv2
 try:
     from cv2 import cv2
@@ -25,10 +26,10 @@ def initialize_folder():
     # removing the old folders
     old_lane_line_dir = ops.join(DVCNN_TRAIN_DATASET_DST_DIR, 'lane_line')
     old_non_lane_line_dir = ops.join(DVCNN_TRAIN_DATASET_DST_DIR, 'non_lane_line')
-    if not ops.isdir(old_lane_line_dir) or not ops.isdir(old_non_lane_line_dir):
-        raise ValueError('{:s} or {:s} doesn\'t exist'.format(old_lane_line_dir, old_non_lane_line_dir))
-    shutil.rmtree(old_lane_line_dir)
-    shutil.rmtree(old_non_lane_line_dir)
+    if ops.exists(old_lane_line_dir):
+        shutil.rmtree(old_lane_line_dir)
+    if ops.exists(old_non_lane_line_dir):
+        shutil.rmtree(old_non_lane_line_dir)
 
     # removing the old top view rois folders
     old_lane_line_top_dir = ops.join(DVCNN_TRAIN_DATASET_SRC_DIR, 'top_view_lane_line_for_training')
@@ -192,6 +193,7 @@ def make_new_dataset():
     copying their corresponding top view rois
     :return:
     """
+    t_start = time.time()
     # 1.Initialize the folder
     initialize_folder()
     # 2.Select the lane line top samples
@@ -200,8 +202,8 @@ def make_new_dataset():
     select_non_lane_line_samples()
     # 3.Copy the total samples
     copy_samples()
+    print('Making DVCNN training datasets complete costs time: {:5f}s'.format(time.time() - t_start))
     return
-
 
 if __name__ == '__main__':
     make_new_dataset()

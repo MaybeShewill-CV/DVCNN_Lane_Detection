@@ -13,14 +13,15 @@ try:
 except ImportError:
     pass
 
-from dvcnn_classifier import DVCNNClassifier
-from extract_roi import extract_roi_candidates
-from global_optimization import Optimizer
+from Global_Optimization.dvcnn_classifier import DVCNNClassifier
+from Global_Optimization.extract_roi import extract_roi_candidates
+from Global_Optimization.global_optimization import Optimizer
+from Global_Configuration.config import cfg
 
-START_X = 325
-START_Y = 327
-CROP_WIDTH = 325
-CROP_HEIGHT = 325
+START_X = cfg.ROI.TOP_CROP_START_X
+START_Y = cfg.ROI.TOP_CROP_START_Y
+CROP_WIDTH = cfg.ROI.TOP_CROP_WIDTH
+CROP_HEIGHT = cfg.ROI.TOP_CROP_HEIGHT
 
 
 def detect_lane_line(top_view_image_file, front_view_image_file, model_file, weights_file):
@@ -195,7 +196,7 @@ def detect_lane_line(top_view_image_file, front_view_image_file, model_file, wei
     return
 
 
-def main(top_view_dir):
+def detect(top_view_dir):
     top_file_list = []
     for parents, _, filenames in os.walk(top_view_dir):
         for filename in filenames:
@@ -208,14 +209,9 @@ def main(top_view_dir):
         fv_file = ops.join(fv_file_dir, fv_file_id)
         print('Detect {:s}'.format(top_file))
         detect_lane_line(top_view_image_file=top_file, front_view_image_file=fv_file,
-                         model_file='DVCNN/model_def/DVCNN.json', weights_file='DVCNN/model/dvcnn.ckpt-2499')
+                         model_file='DVCNN/model_def/DVCNN.json', weights_file='DVCNN/model/dvcnn.ckpt-2704')
     return
 
 
 if __name__ == '__main__':
-    # detect_lane_line(top_view_image_file='data/top_view/test_top.jpg',
-    #                  front_view_image_file='data/front_view/test_fv.jpg',
-    #                  model_file='DVCNN/model_def/DVCNN.json',
-    #                  weights_file='DVCNN/model/dvcnn.ckpt-1199')
-    # print('Done')
-    main(top_view_dir='/home/baidu/DataBase/Road_Center_Line_DataBase/Origin/top_view')
+    detect(top_view_dir='/home/baidu/DataBase/Road_Center_Line_DataBase/Origin/Test/top_view')

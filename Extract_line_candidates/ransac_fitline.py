@@ -3,7 +3,6 @@ Use RANSAC function fits a line according the candidates extracted by the weight
 implemention of RANSAC method
 """
 import cv2
-import numpy as np
 try:
     from cv2 import cv2
 except ImportError:

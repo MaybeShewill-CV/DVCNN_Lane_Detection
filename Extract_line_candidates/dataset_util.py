@@ -15,6 +15,9 @@ class Dataset(object):
         self.__get_files(dir_path=dir_path, file_flag=file_flag)
         return
 
+    def __str__(self):
+        return 'Datasets with {:d} files'.format(self.__nums)
+
     def __get_files(self, dir_path, file_flag):
         for parents, dirnames, filenames in os.walk(dir_path):
             for filename in filenames:

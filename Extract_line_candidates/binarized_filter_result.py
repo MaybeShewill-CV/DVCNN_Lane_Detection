@@ -2,19 +2,22 @@
 Binarized the weight hat-like filter result image via intensity normalizing and thresholding.
 """
 import math
-import numpy as np
-import matplotlib.pyplot as plt
+
 import cv2
+import numpy as np
+
 try:
     from cv2 import cv2
 except ImportError:
     pass
 
-from Global_Optimization.imdb import Roidb
-from inverse_perspective_map import perspective_point
+from Global_Configuration.imdb import Roidb
+from Extract_line_candidates.inverse_perspective_map import perspective_point
+from Global_Configuration.config import cfg
 
-START_X = 325
-START_Y = 327
+START_X = cfg.ROI.TOP_CROP_START_X
+START_Y = cfg.ROI.TOP_CROP_START_Y
+(WARPED_IMAGE_WIDTH, WARPED_IMAGE_HEIGHT) = cfg.ROI.WARPED_SIZE
 
 
 def __calculate_line_degree(pt1, pt2):
@@ -50,7 +53,12 @@ def __get_rrect_degree(_rrect):
         return __calculate_line_degree(points[2], points[1])
 
 
-def __get_rrect_aera(_rrect):
+def __get_rrect_area(_rrect):
+    """
+    Get the area of the rotate rect
+    :param _rrect:
+    :return:
+    """
     points = cv2.boxPoints(box=_rrect)
     firstline_length = math.sqrt(math.pow((points[1][0] - points[0][0]), 2) +
                                  math.pow((points[1][1] - points[0][1]), 2))
@@ -69,7 +77,7 @@ def __is_rrect_valid(rrect):
     if rrect_angle < 45 or rrect_angle > 135:
         return False
     #
-    rrect_area = __get_rrect_aera(rrect)
+    rrect_area = __get_rrect_area(rrect)
     if rrect_area < 12*12:
         return False
     return True
@@ -95,7 +103,8 @@ def __map_roi_to_front_view(roidb):
         # map the point from top crop image to top image
         pt1 = [point[0]+START_X, point[1]+START_Y]
         fv_point = perspective_point(pt1=pt1)
-        if fv_point[0] < 0 or fv_point[0] >= 1000 or fv_point[1] < 0 or fv_point[1] >= 700:
+        if fv_point[0] < 0 or fv_point[0] >= WARPED_IMAGE_WIDTH or fv_point[1] < 0 \
+                or fv_point[1] >= WARPED_IMAGE_HEIGHT:
             roidb_is_valid = False
             break
         fv_roi_contours.append(fv_point)
@@ -104,7 +113,8 @@ def __map_roi_to_front_view(roidb):
         # map the point from top crop image to top image
         pt1 = [point[0] + START_X, point[1] + START_Y]
         fv_point = perspective_point(pt1=pt1)
-        if fv_point[0] < 0 or fv_point[0] >= 1000 or fv_point[1] < 0 or fv_point[1] >= 700:
+        if fv_point[0] < 0 or fv_point[0] >= WARPED_IMAGE_WIDTH or fv_point[1] < 0 \
+                or fv_point[1] >= WARPED_IMAGE_HEIGHT:
             roidb_is_valid = False
             break
         fv_roi_response_points.append(fv_point)

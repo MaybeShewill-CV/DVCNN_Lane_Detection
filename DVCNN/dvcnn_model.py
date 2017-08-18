@@ -1,6 +1,9 @@
+"""
+Construct the DVCNN model
+"""
 import tensorflow as tf
 
-from cnn_util import conv2d, max_pool, activate, fully_connect, concat, batch_norm
+from DVCNN.cnn_util import conv2d, max_pool, activate, fully_connect, concat, batch_norm
 
 
 def build_dvcnn(top_view_input, front_view_input, dvcnn_architecture):
@@ -163,32 +166,3 @@ def build_dvcnn_test(top_view_input, front_view_input, dvcnn_architecture):
     out_put = tf.reshape(tensor=fc8, shape=[-1, dvcnn_architecture['fc8']['ksize'][-1]])
 
     return out_put
-
-
-# def main():
-#     top_view_image = cv2.imread('../Extract_line_candidates/data/201610107c1003522_roi.png', cv2.IMREAD_UNCHANGED)
-#     front_view_image = cv2.imread('../Extract_line_candidates/data/201610107c1003523_roi.png', cv2.IMREAD_UNCHANGED)
-#
-#     top_view_image = cv2.resize(src=top_view_image, dsize=(64, 64))
-#     top_view_image = top_view_image[np.newaxis, :, :, :]
-#     front_view_image = cv2.resize(src=front_view_image, dsize=(128, 128))
-#     front_view_image = front_view_image[np.newaxis, :, :, :]
-#
-#     top_input_tensor = tf.placeholder(dtype=tf.float32, shape=[None, 64, 64, 3], name='top_view_input')
-#     front_input_tensor = tf.placeholder(dtype=tf.float32, shape=[None, 128, 128, 3], name='front_view_input')
-#
-#     dvcnn_architeccture = read_json_model('model_def/DVCNN.json')
-#
-#     cnn_out = build_dvcnn(top_view_input=top_input_tensor, fron_view_input=front_input_tensor,
-#                           dvcnn_architecture=dvcnn_architeccture)
-#
-#     with tf.Session() as sess:
-#         init = tf.global_variables_initializer()
-#         sess.run(init)
-#
-#         out = sess.run(cnn_out, feed_dict={top_input_tensor: top_view_image, front_input_tensor: front_view_image})
-#         print(out)
-#
-#
-# if __name__ == '__main__':
-#     main()

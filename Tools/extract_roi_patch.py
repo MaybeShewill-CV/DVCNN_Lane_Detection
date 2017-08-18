@@ -4,22 +4,26 @@ front view image and save them into data lane_line which are supposed to be sele
 mainly used during training time to support the sample selection work
 """
 import os
-
-import cv2
+import os.path as ops
+import argparse
 import numpy as np
+import shutil
 import sys
+import time
+import cv2
 try:
     from cv2 import cv2
 except ImportError:
     pass
 
-import Extract_line_candidates.extract_candidate
-import inverse_perspective_map
+from Extract_line_candidates import extract_candidate
+from Extract_line_candidates import inverse_perspective_map
+from Global_Configuration.config import cfg
 
-START_X = 325
-START_Y = 327
-CROP_WIDTH = 325
-CROP_HEIGHT = 325
+START_X = cfg.ROI.TOP_CROP_START_X
+START_Y = cfg.ROI.TOP_CROP_START_Y
+CROP_WIDTH = cfg.ROI.TOP_CROP_WIDTH
+CROP_HEIGHT = cfg.ROI.TOP_CROP_HEIGHT
 
 
 def __get_rect(rotbox):
@@ -40,6 +44,37 @@ def __get_rect(rotbox):
     return rect
 
 
+def __init_folders(top_image_dir, fv_image_dir, top_rois_dir, fv_rois_dir):
+    """
+    Check if the top image dir and fv image dir exist. Delete the existed top rois dir and fv rois dir
+    :param top_image_dir:
+    :param fv_image_dir:
+    :param top_rois_dir:
+    :param fv_rois_dir:
+    :return:
+    """
+    if not ops.exists(top_image_dir) or not ops.exists(fv_image_dir):
+        raise ValueError('Folder {:s} or {:s} doesn\'t exist'.format(top_image_dir, fv_image_dir))
+    if not ops.exists(top_rois_dir):
+        os.makedirs(top_rois_dir)
+    if not ops.exists(fv_rois_dir):
+        os.makedirs(fv_rois_dir)
+
+    if ops.exists(top_rois_dir) and os.listdir(top_rois_dir):  # old top rois dir contains rois delete them
+        shutil.rmtree(top_rois_dir)
+        os.makedirs(top_rois_dir)
+    if ops.exists(fv_rois_dir) and os.listdir(fv_rois_dir):
+        shutil.rmtree(fv_rois_dir)
+        os.makedirs(fv_rois_dir)
+
+    if not ops.exists(top_rois_dir):
+        os.makedirs(top_rois_dir)
+    if not ops.exists(fv_rois_dir):
+        os.makedirs(fv_rois_dir)
+    print('Folders initialization complete!')
+    return
+
+
 def extract_and_save_roi_patch(top_image_dir, fv_image_dir, top_view_roi_save_path, front_view_roi_save_path):
     """
     extract roi patch from top view image and save the roi patch and its' corresponding front view roi patch
@@ -49,16 +84,10 @@ def extract_and_save_roi_patch(top_image_dir, fv_image_dir, top_view_roi_save_pa
     :param front_view_roi_save_path: the path where you store the front view roi patch
     :return:
     """
-    if not os.path.exists(top_image_dir):
-        raise ValueError('{:s} doesn\'t exist'.format(top_image_dir))
-    if not os.path.exists(fv_image_dir):
-        raise ValueError('{:s} doesn\'t exist'.format(fv_image_dir))
-    if not os.path.exists(top_view_roi_save_path):
-        os.makedirs(top_view_roi_save_path)
-    if not os.path.exists(front_view_roi_save_path):
-        os.makedirs(front_view_roi_save_path)
+    __init_folders(top_image_dir=top_image_dir, fv_image_dir=fv_image_dir,
+                   top_rois_dir=top_view_roi_save_path, fv_rois_dir=front_view_roi_save_path)
 
-    res_info = Extract_line_candidates.extract_candidate.extract_all(top_image_dir)
+    res_info = extract_candidate.extract_all(top_image_dir)
 
     extract_count = 0
     for image_id, info in res_info.items():
@@ -99,7 +128,7 @@ def extract_and_save_roi_patch(top_image_dir, fv_image_dir, top_view_roi_save_pa
             fv_roi_save_id = os.path.join(front_view_roi_save_path, fv_roi_save_id)
             cv2.imwrite(fv_roi_save_id, fv_roi)
         extract_count += 1
-        sys.stdout.write('\r>>Extract {:d}/{:d} {:s}'.format(extract_count, len(res_info), image_id))
+        sys.stdout.write('\r>>Extracting rois {:d}/{:d} {:s}'.format(extract_count, len(res_info), image_id))
         sys.stdout.flush()
     sys.stdout.write('\n')
     sys.stdout.flush()
@@ -107,10 +136,15 @@ def extract_and_save_roi_patch(top_image_dir, fv_image_dir, top_view_roi_save_pa
 
 
 if __name__ == '__main__':
-    extract_and_save_roi_patch(top_image_dir='/home/baidu/DataBase/Road_Center_Line_DataBase/Origin/top_view_crop',
-                               fv_image_dir='/home/baidu/DataBase/Road_Center_Line_DataBase/Origin/fv_view',
-                               top_view_roi_save_path='/home/baidu/DataBase/Road_Center_Line_DataBase/'
-                                                      'Extract_Roi/top_view',
-                               front_view_roi_save_path='/home/baidu/DataBase/Road_Center_Line_DataBase/'
-                                                        'Extract_Roi/front_view')
-    print('Done')
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--top_image_dir', type=str, help='The dir where you store the cropped top view images')
+    parser.add_argument('--fv_image_dir', type=str, help='The dir where you store the front view images')
+    parser.add_argument('--top_rois_dir', type=str, help='The dir where you store the extracted top view rois')
+    parser.add_argument('--fv_rois_dir', type=str, help='The dir where you store the extracted front view rois')
+
+    args = parser.parse_args()
+
+    t_start = time.time()
+    extract_and_save_roi_patch(top_image_dir=args.top_image_dir, fv_image_dir=args.fv_image_dir,
+                               top_view_roi_save_path=args.top_rois_dir, front_view_roi_save_path=args.fv_rois_dir)
+    print('Extracting rois complete cost time {:5f}s'.format(time.time() - t_start))

@@ -5,11 +5,12 @@ Neutral Network" formulation (4)
 2.Calculate the score of every merged roi by the w_len and w_amount
 3.Remain the merged roi with the highest score
 """
-import math
 import itertools
+import math
+
 import numpy as np
 
-from imdb import Roidb
+from Global_Configuration.imdb import Roidb
 
 
 class Optimizer(object):
@@ -174,12 +175,3 @@ class Optimizer(object):
             result.append((roi, 0.7*self.__calculate_wlen_l(s_l=lane_length, h=top_image_height) +
                            0.3*self.__calculate_rho_l(rho=rho)))
         return result
-
-
-
-
-
-
-
-
-

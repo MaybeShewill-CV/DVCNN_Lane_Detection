@@ -1,5 +1,5 @@
 """
-Some util functions
+Some dvcnn util functions
 """
 import tensorflow as tf
 import os
@@ -27,6 +27,11 @@ def write_dvcnn_model(json_path):
 
 
 def _model_json_exist(json_path):
+    """
+    Check if the json file exists
+    :param json_path:
+    :return:
+    """
     return os.path.isfile(json_path)
 
 
@@ -60,6 +65,14 @@ def read_json_model(json_model_path):
 
 
 def conv2d(_input, _conv_para, name, reuse=False):
+    """
+    Define the convolution function
+    :param _input:
+    :param _conv_para:
+    :param name:
+    :param reuse:
+    :return:
+    """
     with tf.variable_scope(name, reuse=reuse):
         # truncated normal initialize
         init_w = tf.truncated_normal(shape=_conv_para['ksize'], mean=0, stddev=0.02)
@@ -75,6 +88,14 @@ def conv2d(_input, _conv_para, name, reuse=False):
 
 
 def activate(_input, _activate_para, name, reuse=False):
+    """
+    Define the activation function
+    :param _input:
+    :param _activate_para:
+    :param name:
+    :param reuse:
+    :return:
+    """
     with tf.variable_scope(name, reuse=reuse):
         if _activate_para['method'] == 'RELU':
             return tf.nn.relu(_input, name='Relu_activation')
@@ -87,15 +108,38 @@ def activate(_input, _activate_para, name, reuse=False):
 
 
 def max_pool(_input, _max_pool_para, name, reuse=False):
+    """
+    Define the pooling function
+    :param _input:
+    :param _max_pool_para:
+    :param name:
+    :param reuse:
+    :return:
+    """
     with tf.variable_scope(name, reuse=reuse):
         return tf.nn.max_pool(_input, _max_pool_para['ksize'], _max_pool_para['strides'], _max_pool_para['padding'])
 
 
 def concat(_input, _concat_para, name):
+    """
+    Define the concat function
+    :param _input:
+    :param _concat_para:
+    :param name:
+    :return:
+    """
     return tf.concat(values=_input, axis=_concat_para['axis'], name=name)
 
 
 def fully_connect(_input, _fc_para, name, reuse=False):
+    """
+    Define the fully connection function
+    :param _input:
+    :param _fc_para:
+    :param name:
+    :param reuse:
+    :return:
+    """
     with tf.variable_scope(name, reuse=reuse):
         # truncated normal initialize
         init_w = tf.truncated_normal(shape=_fc_para['ksize'], mean=0, stddev=0.02)
@@ -110,4 +154,11 @@ def fully_connect(_input, _fc_para, name, reuse=False):
 
 
 def batch_norm(_input, name, reuse=False):
+    """
+    Define the batch normally function
+    :param _input:
+    :param name:
+    :param reuse:
+    :return:
+    """
     return tf.layers.batch_normalization(_input, name=name, reuse=reuse)

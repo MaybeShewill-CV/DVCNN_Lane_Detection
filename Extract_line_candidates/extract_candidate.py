@@ -1,20 +1,21 @@
+"""
+Functions used to extract lane line candidates roi mainly including the thresholding function
+"""
 import math
 import os
 import sys
 import time
-
 import cv2
 import numpy as np
 import tensorflow as tf
-
 try:
     from cv2 import cv2
 except ImportError:
     pass
 
-import dataset_util
-import filter_util
-from model_def.config import cfg
+from Extract_line_candidates import dataset_util
+from Extract_line_candidates import filter_util
+from Global_Configuration.config import cfg
 
 
 def __calculate_line_degree(pt1, pt2):
@@ -144,7 +145,7 @@ def extract_line_candidates(image_file_dir, image_flag):
     _, image_file = image_reader.read(queue=image_filename_queue)
 
     image = tf.image.decode_jpeg(contents=image_file, channels=1)
-    image.set_shape((325, 325, 1))
+    image.set_shape((cfg.ROI.TOP_CROP_WIDTH, cfg.ROI.TOP_CROP_HEIGHT, 1))
 
     image_batch = tf.train.batch(tensors=[image], batch_size=128, num_threads=1)
 
@@ -226,12 +227,14 @@ def extract_all(top_file_dir, is_vis=False, vis_result_save_path=None):
                               0)  # thickness
             res_save_path = os.path.join(vis_result_save_path, image_id)
             cv2.imwrite(res_save_path, image)
-            sys.stdout.write('\r>>Extrct {:d}/{:d} {:s} done with vis'.format(i+1, len(image_file_list), image_id))
+            sys.stdout.write('\r>>Collecting roi info {:d}/{:d} {:s} done with vis'
+                             .format(i+1, len(image_file_list), image_id))
             sys.stdout.flush()
         else:
-            sys.stdout.write('\r>>Extrct {:d}/{:d} {:s} done without vis'.format(i+1, len(image_file_list), image_id))
+            sys.stdout.write('\r>>Collecting roi info {:d}/{:d} {:s} done without vis'
+                             .format(i+1, len(image_file_list), image_id))
             sys.stdout.flush()
     sys.stdout.write('\n')
     sys.stdout.flush()
-    print('Extraction complete cost time {:5f}s'.format(time.time() - t_start))
+    print('Collecting rois information complete cost time {:5f}s'.format(time.time() - t_start))
     return res_info_dict
