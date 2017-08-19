@@ -1,57 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ebe746b3-2d6e-4d26-8beb-d6243d4c0859" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Global_Configuration/utils.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Tools/extract_roi_patch.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Tools/test_dvcnn.sh" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/checkpoint" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-2495.data-00000-of-00001" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-2495.index" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-2495.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-2496.data-00000-of-00001" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-2496.index" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-2496.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-2497.data-00000-of-00001" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-2497.index" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-2497.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-2498.data-00000-of-00001" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-2498.index" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-2498.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-2499.data-00000-of-00001" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-2499.index" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-2499.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/select_dvcnn_samples.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/select_sample.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/spilt_roi.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/tboard/events.out.tfevents.1502969404.baidu-pc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Tools/delete_sample.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Tools/rename_record_file_name.py" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DVCNN/model_def/config.py" afterPath="$PROJECT_DIR$/Global_Configuration/config.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DVCNN/test_dvcnn.py" afterPath="$PROJECT_DIR$/Tools/test_dvcnn.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DVCNN/train_dvcnn.py" afterPath="$PROJECT_DIR$/Tools/train_dvcnn.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Extract_line_candidates/crop_top_patch.py" afterPath="$PROJECT_DIR$/Tools/crop_top_patch.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Extract_line_candidates/extract_roi_patch.py" afterPath="$PROJECT_DIR$/Tools/extract_roi_patch.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Global_Optimization/detect_lane_line.py" afterPath="$PROJECT_DIR$/Tools/detect_lane_line.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Global_Optimization/imdb.py" afterPath="$PROJECT_DIR$/Global_Configuration/imdb.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Road_Center_Line.iml" afterPath="$PROJECT_DIR$/.idea/Road_Center_Line.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DVCNN/cnn_util.py" afterPath="$PROJECT_DIR$/DVCNN/cnn_util.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DVCNN/data_provider.py" afterPath="$PROJECT_DIR$/DVCNN/data_provider.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DVCNN/dvcnn_model.py" afterPath="$PROJECT_DIR$/DVCNN/dvcnn_model.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DVCNN/lane_result.txt" afterPath="$PROJECT_DIR$/DVCNN/lane_result.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DVCNN/preprocess.py" afterPath="$PROJECT_DIR$/DVCNN/preprocess.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Extract_line_candidates/binarized_filter_result.py" afterPath="$PROJECT_DIR$/Extract_line_candidates/binarized_filter_result.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Extract_line_candidates/dataset_util.py" afterPath="$PROJECT_DIR$/Extract_line_candidates/dataset_util.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Extract_line_candidates/extract_candidate.py" afterPath="$PROJECT_DIR$/Extract_line_candidates/extract_candidate.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Extract_line_candidates/filter_util.py" afterPath="$PROJECT_DIR$/Extract_line_candidates/filter_util.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Extract_line_candidates/inverse_perspective_map.py" afterPath="$PROJECT_DIR$/Extract_line_candidates/inverse_perspective_map.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Extract_line_candidates/ransac_fitline.py" afterPath="$PROJECT_DIR$/Extract_line_candidates/ransac_fitline.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Global_Optimization/extract_roi.py" afterPath="$PROJECT_DIR$/Global_Optimization/extract_roi.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Global_Optimization/global_optimization.py" afterPath="$PROJECT_DIR$/Global_Optimization/global_optimization.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tools/make_dvcnn_training_dataset.py" afterPath="$PROJECT_DIR$/Tools/make_dvcnn_training_dataset.py" />
-    </list>
+    <list default="true" id="ebe746b3-2d6e-4d26-8beb-d6243d4c0859" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
