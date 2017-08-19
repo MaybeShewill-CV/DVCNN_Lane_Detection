@@ -11,9 +11,9 @@ except ImportError:
     pass
 from pprint import pprint
 
-from DVCNN import preprocess
+from DVCNN.preprocess import Preprocessor
 from DVCNN.data_provider import DataProvider
-from DVCNN import dvcnn_model
+from DVCNN.dvcnn_model import build_dvcnn, build_dvcnn_test
 from DVCNN.cnn_util import read_json_model
 from Global_Configuration.config import cfg
 
@@ -45,9 +45,9 @@ def train_dvcnn(lane_dir, non_lane_dir):
         top_file_name = val_data[0]
         front_file_name = val_data[1]
         label = val_data[2]
-        top_image = cv2.imread(top_file_name, cv2.IMREAD_UNCHANGED)
+        top_image = cv2.imread(top_file_name, cv2.IMREAD_UNCHANGED)[:, :, (2, 1, 0)]
         top_image = cv2.resize(src=top_image, dsize=(64, 64))
-        front_image = cv2.imread(front_file_name, cv2.IMREAD_UNCHANGED)
+        front_image = cv2.imread(front_file_name, cv2.IMREAD_UNCHANGED)[:, :, (2, 1, 0)]
         front_image = cv2.resize(src=front_image, dsize=(128, 128))
         val_top_input.append(top_image)
         val_front_input.append(front_image)
@@ -60,7 +60,7 @@ def train_dvcnn(lane_dir, non_lane_dir):
             val_label_input[kk] = [1, 0]
 
     # Set train image preprocessor
-    preprocessor = preprocess.Preprocessor()
+    preprocessor = Preprocessor()
 
     # Set the dvcnn architecture
     dvcnn_architecture = read_json_model('DVCNN/model_def/DVCNN.json')
@@ -73,9 +73,11 @@ def train_dvcnn(lane_dir, non_lane_dir):
     # Set input tensors and augmentation processor
     train_top_input_tensor = tf.placeholder(dtype=tf.float32, shape=[None, 64, 64, 3], name='top_input')
     train_front_input_tensor = tf.placeholder(dtype=tf.float32, shape=[None, 128, 128, 3], name='front_input')
+    train_label_input_tensor = tf.placeholder(dtype=tf.float32, shape=[None, 2], name='train_label_input')
 
-    test_top_input_tensor = tf.placeholder(dtype=tf.float32, shape=[None, 64, 64, 3], name='top_input')
-    test_front_input_tensor = tf.placeholder(dtype=tf.float32, shape=[None, 128, 128, 3], name='front_input')
+    val_top_input_tensor = tf.placeholder(dtype=tf.float32, shape=[None, 64, 64, 3], name='top_input')
+    val_front_input_tensor = tf.placeholder(dtype=tf.float32, shape=[None, 128, 128, 3], name='front_input')
+    val_label_input_tensor = tf.placeholder(dtype=tf.float32, shape=[None, 2], name='test_label_input')
 
     augment_dict_whiten = {
         'minmax_normalization': False,
@@ -97,41 +99,87 @@ def train_dvcnn(lane_dir, non_lane_dir):
         }
     }
 
-    train_top_input_tensor_aug = preprocessor.augment_image(self=preprocessor,
-                                                            image=train_top_input_tensor,
-                                                            augment_para_dict=augment_dict_whiten)
-    train_front_input_tensor_aug = preprocessor.augment_image(self=preprocessor,
-                                                              image=train_front_input_tensor,
-                                                              augment_para_dict=augment_dict_whiten)
-    train_top_input_tensor = tf.concat([train_top_input_tensor, train_top_input_tensor_aug], axis=0)
-    train_front_input_tensor = tf.concat([train_front_input_tensor, train_front_input_tensor_aug], axis=0)
-    train_label_input_tensor = tf.placeholder(dtype=tf.float32, shape=[None, 2], name='train_label_input')
+    augment_dict_flip_horizon = {
+        'minmax_normalization': False,
+        'flip_horizon': True,
+        'flip_vertical': False,
+        'random_crop': {
+            'need_random_crop': False
+        },
+        'random_brightness': {
+            'need_random_brightness': False
+        },
+        'random_contrast': {
+            'need_random_contrast': False
+        },
+        'std_normalization': False,
+        'centralization': {
+            'need_centralization': False,
+            'mean_value': [103.939, 116.779, 123.68]
+        }
+    }
 
-    test_top_input_tensor_aug = preprocessor.augment_image(self=preprocessor,
-                                                           image=test_top_input_tensor,
-                                                           augment_para_dict=augment_dict_whiten)
-    test_front_input_tensor_aug = preprocessor.augment_image(self=preprocessor,
-                                                             image=test_front_input_tensor,
-                                                             augment_para_dict=augment_dict_whiten)
-    test_top_input_tensor = tf.concat([test_top_input_tensor, test_top_input_tensor_aug], axis=0)
-    test_front_input_tensor = tf.concat([test_front_input_tensor, test_front_input_tensor_aug], axis=0)
-    test_label_input_tensor = tf.placeholder(dtype=tf.float32, shape=[None, 2], name='test_label_input')
+    augment_dict_flip_vertical = {
+        'minmax_normalization': False,
+        'flip_horizon': False,
+        'flip_vertical': True,
+        'random_crop': {
+            'need_random_crop': False
+        },
+        'random_brightness': {
+            'need_random_brightness': False
+        },
+        'random_contrast': {
+            'need_random_contrast': False
+        },
+        'std_normalization': False,
+        'centralization': {
+            'need_centralization': False,
+            'mean_value': [103.939, 116.779, 123.68]
+        }
+    }
+
+    train_top_input_tensor_aug_whiten = preprocessor.augment_image(self=preprocessor, image=train_top_input_tensor,
+                                                                   augment_para_dict=augment_dict_whiten)
+    train_front_input_tensor_aug_whiten = preprocessor.augment_image(self=preprocessor, image=train_front_input_tensor,
+                                                                     augment_para_dict=augment_dict_whiten)
+    train_top_input_tensor_aug_vflip = preprocessor.augment_image(self=preprocessor, image=train_top_input_tensor,
+                                                                  augment_para_dict=augment_dict_flip_vertical)
+    train_front_input_tensor_aug_vflip = preprocessor.augment_image(self=preprocessor, image=train_front_input_tensor,
+                                                                    augment_para_dict=augment_dict_flip_vertical)
+    train_top_input_tensor_aug_hflip = preprocessor.augment_image(self=preprocessor, image=train_top_input_tensor,
+                                                                  augment_para_dict=augment_dict_flip_horizon)
+    train_front_input_tensor_aug_hflip = preprocessor.augment_image(self=preprocessor, image=train_front_input_tensor,
+                                                                    augment_para_dict=augment_dict_flip_horizon)
+
+    train_top_input_tensor_concat = tf.concat([train_top_input_tensor, train_top_input_tensor_aug_vflip,
+                                               train_top_input_tensor_aug_hflip], axis=0)
+    train_front_input_tensor_concat = tf.concat([train_front_input_tensor, train_front_input_tensor_aug_vflip,
+                                                 train_front_input_tensor_aug_hflip], axis=0)
+    train_label_input_tensor_concat = tf.concat([train_label_input_tensor, train_label_input_tensor,
+                                                 train_label_input_tensor], axis=0)
+
+    val_top_input_tensor_aug = preprocessor.augment_image(self=preprocessor, image=val_top_input_tensor,
+                                                          augment_para_dict=augment_dict_whiten)
+    val_front_input_tensor_aug = preprocessor.augment_image(self=preprocessor, image=val_front_input_tensor,
+                                                            augment_para_dict=augment_dict_whiten)
 
     # Set dvcnn model output tensor
-    dvcnn_train_out = dvcnn_model.build_dvcnn(top_view_input=train_top_input_tensor,
-                                              front_view_input=train_front_input_tensor,
-                                              dvcnn_architecture=dvcnn_architecture)
+    dvcnn_train_out = build_dvcnn(top_view_input=train_top_input_tensor_concat,
+                                  front_view_input=train_front_input_tensor_concat,
+                                  dvcnn_architecture=dvcnn_architecture)
 
-    dvcnn_test_out = dvcnn_model.build_dvcnn_test(top_view_input=test_top_input_tensor,
-                                                  front_view_input=test_front_input_tensor,
-                                                  dvcnn_architecture=dvcnn_architecture)
-    correct_preds_train = tf.equal(tf.argmax(tf.nn.softmax(dvcnn_train_out), 1), tf.argmax(train_label_input_tensor, 1))
+    dvcnn_val_out = build_dvcnn_test(top_view_input=val_top_input_tensor,
+                                     front_view_input=val_front_input_tensor,
+                                     dvcnn_architecture=dvcnn_architecture)
+    correct_preds_train = tf.equal(tf.argmax(tf.nn.softmax(dvcnn_train_out), 1),
+                                   tf.argmax(train_label_input_tensor_concat, 1))
     accuracy_train = tf.reduce_mean(tf.cast(correct_preds_train, tf.float32), name='accuracy_train')
-    correct_preds_val = tf.equal(tf.argmax(tf.nn.softmax(dvcnn_test_out), 1), tf.argmax(test_label_input_tensor, 1))
+    correct_preds_val = tf.equal(tf.argmax(tf.nn.softmax(dvcnn_val_out), 1), tf.argmax(val_label_input_tensor, 1))
     accuracy_test = tf.reduce_mean(tf.cast(correct_preds_val, tf.float32), name='accuracy_val')
 
     # Set loss function
-    cross_entropy_loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=train_label_input_tensor,
+    cross_entropy_loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=train_label_input_tensor_concat,
                                                                                 logits=dvcnn_train_out, name='cost'))
     l2_loss = 0.0
     for v in tf.trainable_variables():
@@ -195,9 +243,9 @@ def train_dvcnn(lane_dir, non_lane_dir):
                 top_file_name = train_batch_data[j][0]
                 front_file_name = train_batch_data[j][1]
                 label = train_batch_data[j][2]
-                top_image = cv2.imread(top_file_name, cv2.IMREAD_UNCHANGED)
+                top_image = cv2.imread(top_file_name, cv2.IMREAD_UNCHANGED)[:, :, (2, 1, 0)]
                 top_image = cv2.resize(src=top_image, dsize=(64, 64))
-                front_image = cv2.imread(front_file_name, cv2.IMREAD_UNCHANGED)
+                front_image = cv2.imread(front_file_name, cv2.IMREAD_UNCHANGED)[:, :, (2, 1, 0)]
                 front_image = cv2.resize(src=front_image, dsize=(128, 128))
                 train_top_input.append(top_image)
                 train_front_input.append(front_image)
@@ -210,14 +258,14 @@ def train_dvcnn(lane_dir, non_lane_dir):
                     train_label_input[kk] = [1, 0]
 
             _, c, train_out, test_out, train_accuracy, test_accuracy, summary = sess.run(
-                [optimizer, total_cost, dvcnn_train_out, dvcnn_test_out, accuracy_train, accuracy_test,
+                [optimizer, total_cost, dvcnn_train_out, dvcnn_val_out, accuracy_train, accuracy_test,
                  mergen_summary_op],
                 feed_dict={train_top_input_tensor: train_top_input,
                            train_front_input_tensor: train_front_input,
                            train_label_input_tensor: train_label_input,
-                           test_top_input_tensor: val_top_input,
-                           test_front_input_tensor: val_front_input,
-                           test_label_input_tensor: val_label_input})
+                           val_top_input_tensor: val_top_input,
+                           val_front_input_tensor: val_front_input,
+                           val_label_input_tensor: val_label_input})
 
             summary_writer.add_summary(summary=summary, global_step=epoch)
 

@@ -177,11 +177,11 @@ def test_net(model_path, weights_path, lane_dir, non_lane_dir):
             file_id = os.path.split(test_front_filename[index])[1]
             print('***{:s}*** ***  {:d}  *** ***  {:d}  ***'.format(file_id, np.argmax(gt_label_list[index], axis=0),
                                                                     prediction[index]))
-            # plt.figure('Front View Image')
-            # plt.imshow(np.uint8(fv_image[:, :, (2, 1, 0)]))
-            # plt.figure('Top View Image')
-            # plt.imshow(np.uint8(top_image_list[index][:, :, (2, 1, 0)]))
-            # plt.show()
+            plt.figure('Front View Image')
+            plt.imshow(np.uint8(fv_image[:, :, (2, 1, 0)]))
+            plt.figure('Top View Image')
+            plt.imshow(np.uint8(top_image_list[index][:, :, (2, 1, 0)]))
+            plt.show()
         print('Total test sample is {:d} lane sample nums: {:d} non lane samples nums: {:d}'.
               format(len(test_label), lane_sample_nums, non_lane_sample_nums))
         print('Predicts {:d} images {:d} is correct accuracy is {:4f}'.format(len(test_label), correct_prediction,
