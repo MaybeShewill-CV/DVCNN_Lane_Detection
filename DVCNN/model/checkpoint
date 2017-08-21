@@ -1,6 +1,0 @@
-model_checkpoint_path: "dvcnn.ckpt-4"
-all_model_checkpoint_paths: "dvcnn.ckpt-0"
-all_model_checkpoint_paths: "dvcnn.ckpt-1"
-all_model_checkpoint_paths: "dvcnn.ckpt-2"
-all_model_checkpoint_paths: "dvcnn.ckpt-3"
-all_model_checkpoint_paths: "dvcnn.ckpt-4"
