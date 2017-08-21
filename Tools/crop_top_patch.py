@@ -1,3 +1,8 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# @Author  : Luo Yao
+# @Site    : http://github.com/TJCVRS
+# @File    : crop_top_patch.py
 """
 Crop top view image to get a roi image, record the crop start position in order to be able to remap the points in the
 roi image to front view image
@@ -70,5 +75,3 @@ if __name__ == '__main__':
     t_start = time.time()
     crop_top_images(top_image_dir=args.top_image_dir, crop_image_save_dir=args.crop_image_dir)
     print('Crop complete costs time {:5f}s'.format(time.time() - t_start))
-    # top_image_path = '/home/baidu/DataBase/Road_Center_Line_DataBase/Origin/top_view'
-    # crop_image_save_path = '/home/baidu/DataBase/Road_Center_Line_DataBase/Origin/top_view_crop'

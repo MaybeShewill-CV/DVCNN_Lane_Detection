@@ -1,3 +1,8 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# @Author  : Luo Yao
+# @Site    : http://github.com/TJCVRS
+# @File    : make_dvcnn_training_dataset.py
 """
 Make DVCNN training data sets what you are supposed to do is to put the select the lane line and non lane line fv
 samples by hand and storing them into folder front_view_lane_line_for_training and front_view_non_lane_line_for_training

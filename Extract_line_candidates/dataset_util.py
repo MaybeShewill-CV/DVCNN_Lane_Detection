@@ -1,3 +1,8 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# @Author  : Luo Yao
+# @Site    : http://github.com/TJCVRS
+# @File    : dataset_util.py
 """
 Some functions used to process the dataset
 """

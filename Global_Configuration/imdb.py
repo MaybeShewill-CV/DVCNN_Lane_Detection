@@ -1,3 +1,8 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# @Author  : Luo Yao
+# @Site    : http://github.com/TJCVRS
+# @File    : imdb.py
 """
 Construct a roi class to store the candidate information of an image
 """
@@ -8,7 +13,7 @@ try:
 except ImportError:
     pass
 
-from Extract_line_candidates.ransac_fitline import ransac_linefit_sklearn, ransac_linefit_opencv
+from Extract_line_candidates import ransac_fitline
 
 
 class Roidb(object):
@@ -62,7 +67,8 @@ class Roidb(object):
         """
         # param, inliers = ransac_linefit_sklearn(points=self.__roi_contours)
         # param = ransac_linefit_opencv(points=self.__roi_contours)
-        param = ransac_linefit_opencv(points=self.__roi_response_points)
+        ransaclinefitter = ransac_fitline.RansacLineFitter()
+        param = ransaclinefitter.ransac_linefit_opencv(points=self.__roi_response_points)
         return param
 
     def __calculate_line_angle(self):

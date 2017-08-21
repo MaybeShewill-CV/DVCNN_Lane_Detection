@@ -3,7 +3,6 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/Extract_line_candidates" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/DVCNN" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Global_Optimization" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Global_Configuration" isTestSource="false" />
     </content>

@@ -1,3 +1,8 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# @Author  : Luo Yao
+# @Site    : http://github.com/TJCVRS
+# @File    : detect_lane_line.py
 """
 Detect lane line from front view image and top view image
 """
@@ -14,7 +19,7 @@ except ImportError:
     pass
 
 from Global_Optimization.dvcnn_classifier import DVCNNClassifier
-from Global_Optimization.extract_roi import extract_roi_candidates
+from Global_Optimization.extract_roi import RoiExtractorSingle
 from Global_Optimization.global_optimization import Optimizer
 from Global_Configuration.config import cfg
 
@@ -45,10 +50,11 @@ def detect_lane_line(top_view_image_file, front_view_image_file, model_file, wei
     # crop top image patch because the bottom part of the perspective top image from front image is largely variant
     top_image_patch = top_image[START_Y:START_Y+CROP_HEIGHT, START_X:START_X+CROP_WIDTH, :]
     top_image_patch_copy = top_image_patch.copy()
-    top_image_patch_copy2 = np.zeros(shape=(350, 350), dtype=np.uint8)
+    top_image_patch_copy2 = np.zeros(shape=(CROP_WIDTH+1, CROP_HEIGHT+1), dtype=np.uint8)
 
     # extract roi candidates from top image
-    roi_pairs, filtered_image = extract_roi_candidates(image=top_image_patch)
+    extractor = RoiExtractorSingle(_cfg=cfg)
+    roi_pairs, filtered_image = extractor.extract_roi_candidates(image=top_image_patch)
 
     # use dvcnn to classify the roi is a lane line or not
     top_rois = []

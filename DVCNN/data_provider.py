@@ -1,3 +1,8 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# @Author  : Luo Yao
+# @Site    : http://github.com/TJCVRS
+# @File    : data_provider.py
 """
 Data file for training DVCNN should be structured as follows:
     Lane_line_data:
@@ -22,7 +27,7 @@ Data file for training DVCNN should be structured as follows:
 import os
 import numpy as np
 
-from Global_Configuration.utils import find_substr_itimes
+from Global_Configuration import utils
 
 
 class DataProvider(object):
@@ -125,7 +130,7 @@ class DataProvider(object):
         :return:
         """
         [_, top_image_id] = os.path.split(top_file_name)
-        top_prefix = top_image_id[:find_substr_itimes(top_image_id, '_', 3)]
+        top_prefix = top_image_id[:utils.find_substr_itimes(top_image_id, '_', 3)]
         if label == 1:
             fv_file_list = self.__lane_front_sample_list
         else:
@@ -133,7 +138,7 @@ class DataProvider(object):
 
         for fv_file_name in fv_file_list:
             [_, fv_image_id] = os.path.split(fv_file_name)
-            fv_prefix = fv_image_id[:find_substr_itimes(fv_image_id, '_', 3)]
+            fv_prefix = fv_image_id[:utils.find_substr_itimes(fv_image_id, '_', 3)]
             top_prefix = top_prefix.replace('top', 'fv')
             if fv_prefix == top_prefix:
                 return fv_file_name

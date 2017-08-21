@@ -1,6 +1,12 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# @Author  : Luo Yao
+# @Site    : http://github.com/TJCVRS
+# @File    : dvcnn_global_variable.py
 """
-Some global parameters, you should not change it easily
+Some dvcnn global parameters, you should not change it easily
 """
+from Global_Configuration.config import cfg
 
 
 DVCNN_ARCHITECTURE = {
@@ -97,5 +103,22 @@ DVCNN_ARCHITECTURE = {
         'strides': [1, 1, 1, 1],
         'padding': 'VALID',
         'trainable': True
+    }
+}
+
+
+DVCNN_AUGMENTATION_DICTS = {
+    'whiten': {
+        'mean_value': [103.939, 116.779, 123.68]
+    },
+    'random_brightness': {
+        'brightness': cfg.TRAIN.RANDOM_BRIGHTNESS_VALUE
+    },
+    'random_contrast': {
+        'lower_factor': cfg.TRAIN.RANDOM_CONTRAST_LOWER_VALUE,
+        'upper_factor': cfg.TRAIN.RANDOM_CONTRAST_HIGHER_VALUE
+    },
+    'random_crop': {
+        'crop_size': cfg.TRAIN.RANDOM_CROP_VALUE
     }
 }

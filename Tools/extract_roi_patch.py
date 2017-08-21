@@ -1,3 +1,8 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# @Author  : Luo Yao
+# @Site    : http://github.com/TJCVRS
+# @File    : extract_roi_patch.py
 """
 Use weights hat-like filter to filter the top view image and extract the roi patch and its' corresponding roi patch in
 front view image and save them into data lane_line which are supposed to be selected by hands later. This function is
@@ -16,14 +21,14 @@ try:
 except ImportError:
     pass
 
-from Extract_line_candidates import extract_candidate
-from Extract_line_candidates import inverse_perspective_map
+from Extract_line_candidates.extract_candidate import RoiExtractor
+from Extract_line_candidates.inverse_perspective_map import PerspectiveTransformer
 from Global_Configuration.config import cfg
 
-START_X = cfg.ROI.TOP_CROP_START_X
-START_Y = cfg.ROI.TOP_CROP_START_Y
-CROP_WIDTH = cfg.ROI.TOP_CROP_WIDTH
-CROP_HEIGHT = cfg.ROI.TOP_CROP_HEIGHT
+__START_X = cfg.ROI.TOP_CROP_START_X
+__START_Y = cfg.ROI.TOP_CROP_START_Y
+__CROP_WIDTH = cfg.ROI.TOP_CROP_WIDTH
+__CROP_HEIGHT = cfg.ROI.TOP_CROP_HEIGHT
 
 
 def __get_rect(rotbox):
@@ -87,7 +92,10 @@ def extract_and_save_roi_patch(top_image_dir, fv_image_dir, top_view_roi_save_pa
     __init_folders(top_image_dir=top_image_dir, fv_image_dir=fv_image_dir,
                    top_rois_dir=top_view_roi_save_path, fv_rois_dir=front_view_roi_save_path)
 
-    res_info = extract_candidate.extract_all(top_image_dir)
+    extractor = RoiExtractor(_cfg=cfg)
+    res_info = extractor.extract_all(top_image_dir)
+
+    transformer = PerspectiveTransformer(_cfg=cfg)
 
     extract_count = 0
     for image_id, info in res_info.items():
@@ -117,9 +125,9 @@ def extract_and_save_roi_patch(top_image_dir, fv_image_dir, top_view_roi_save_pa
                 # remap the rotate rect position from the cropped top view image to the origin top view image which is
                 # correspond to the front view image. The cropped top view image is cropped from the origin top view
                 # image at position [START_X, START_Y] with [CROP_WIDTH, CROP_HEIGHT] width and height
-                rotbox[j] = np.add(rotbox[j], [START_X, START_Y])
+                rotbox[j] = np.add(rotbox[j], [__START_X, __START_Y])
                 # remap the position from top view image to front view image
-                rotbox[j] = inverse_perspective_map.perspective_point(rotbox[j])
+                rotbox[j] = transformer.perspective_point(rotbox[j])
             # get the min surrounding rect of the rotate rect
             fv_minrect = __get_rect(rotbox)
             fv_roi = fv_image[fv_minrect[1]:fv_minrect[3], fv_minrect[0]:fv_minrect[2], :]

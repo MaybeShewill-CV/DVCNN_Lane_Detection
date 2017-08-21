@@ -1,3 +1,8 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# @Author  : Luo Yao
+# @Site    : http://github.com/TJCVRS
+# @File    : test_dvcnn.py
 """
 Test the DVCNN network
 """
@@ -123,7 +128,6 @@ def test_net(model_path, weights_path, lane_dir, non_lane_dir):
     test_top_input = []
     test_front_input = []
     test_label = []
-    test_label_input = []
     test_front_filename = []
     for index, test_data in enumerate(test_batch_data):
         top_file_name = test_data[0]

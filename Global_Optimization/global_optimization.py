@@ -1,3 +1,8 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# @Author  : Luo Yao
+# @Site    : http://github.com/TJCVRS
+# @File    : global_optimization.py
 """
 Global optimization according the paper "Accurate and Robust Lane Detection based on Dual-View Convolutional
 Neutral Network" formulation (4)
@@ -7,7 +12,6 @@ Neutral Network" formulation (4)
 """
 import itertools
 import math
-
 import numpy as np
 
 from Global_Configuration.imdb import Roidb

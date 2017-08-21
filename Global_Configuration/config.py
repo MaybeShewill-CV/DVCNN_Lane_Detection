@@ -1,3 +1,8 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# @Author  : Luo Yao
+# @Site    : http://github.com/TJCVRS
+# @File    : config.py
 """
 Set some global config
 """
@@ -48,7 +53,7 @@ __C.TRAIN.GPU_MEMORY_FRACTION = 0.8
 # Set the GPU allow growth parameter during tensorflow training process
 __C.TRAIN.TF_ALLOW_GROWTH = False
 # Set the DVCNN training batch size
-__C.TRAIN.BATCH_SIZE = 128
+__C.TRAIN.BATCH_SIZE = 64
 # Set the DVCNN validation batch size
 __C.TRAIN.VAL_BATCH_SIZE = 396
 # Set the learning rate decay steps
@@ -57,7 +62,27 @@ __C.TRAIN.LR_DECAY_STEPS = 1000
 __C.TRAIN.LR_DECAY_RATE = 0.1
 # Set the L2 regularization decay rate
 __C.TRAIN.L2_DECAY_RATE = 0.0001
-
+# Set the horizon flip data augmentation method
+__C.TRAIN.USE_HORIZON_FLIP = True
+# Set the vertical flip data augmentation method
+__C.TRAIN.USE_VERTICAL_FLIP = True
+# Set the random crop data augmentation method
+__C.TRAIN.USE_RANDOM_CROP = False
+__C.TRAIN.RANDOM_CROP_VALUE = [300, 300, 3]
+# Set the random brightness data augmentation method
+__C.TRAIN.USE_RANDOM_BRIGHTNESS = True
+__C.TRAIN.RANDOM_BRIGHTNESS_VALUE = 100  # you can check the preprocess.py scripts to learn the way how it's implemented
+# Set the random contrast data augmentation method
+__C.TRAIN.USE_RANDOM_CONTRAST = True
+__C.TRAIN.RANDOM_CONTRAST_LOWER_VALUE = 0.4
+__C.TRAIN.RANDOM_CONTRAST_HIGHER_VALUE = 0.6
+# Set the std normalization data augmentation method
+__C.TRAIN.USE_STD_NORMALIZATION = False
+# Set the min max normalization data augmentation method
+__C.TRAIN.USE_MINMAX_NORMALIZATION = False
+# Set the central normalization data augmentation method
+__C.TRAIN.USE_CENTRAL_NORMALIZATION = False
+__C.TRAIN.CENTRAL_NORMALIZATION_VALUE = [103.939, 116.779, 123.68]
 
 # Test options
 __C.TEST = edict()
@@ -65,3 +90,8 @@ __C.TEST = edict()
 __C.TEST.HAT_LIKE_FILTER_WINDOW_WIDTH = 3
 # Set the weighted hat like filter window height
 __C.TEST.HAT_LIKE_FILTER_WINDOW_HEIGHT = 7
+# Set the GPU resource used during testing process
+__C.TEST.GPU_MEMORY_FRACTION = 0.8
+# Set the GPU allow growth parameter during tensorflow testing process
+__C.TEST.TF_ALLOW_GROWTH = False
+
