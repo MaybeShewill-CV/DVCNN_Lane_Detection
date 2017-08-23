@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Road_Center_Line.iml" filepath="$PROJECT_DIR$/.idea/Road_Center_Line.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/DVCNN_Lane_Detection.iml" filepath="$PROJECT_DIR$/.idea/DVCNN_Lane_Detection.iml" />
     </modules>
   </component>
 </project>
