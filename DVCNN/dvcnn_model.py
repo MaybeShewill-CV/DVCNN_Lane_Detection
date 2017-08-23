@@ -12,13 +12,109 @@ from DVCNN import cnn_util
 
 class DVCNNBuilder(object):
     def __init__(self, json_model_path):
-        self.__conv2d = cnn_util.conv2d
-        self.__max_pool = cnn_util.max_pool
-        self.__activate = cnn_util.activate
-        self.__fully_connect = cnn_util.fully_connect
-        self.__concat = cnn_util.concat
-        self.__batch_norm = cnn_util.batch_norm
         self.__dvcnn_architecture = cnn_util.read_json_model(json_model_path=json_model_path)
+        return
+
+    @staticmethod
+    def __conv2d(_input, _conv_para, name, reuse=False):
+        """
+        Define the convolution function
+        :param _input:
+        :param _conv_para:
+        :param name:
+        :param reuse:
+        :return:
+        """
+        with tf.variable_scope(name, reuse=reuse):
+            # truncated normal initialize
+            init_w = tf.truncated_normal(shape=_conv_para['ksize'], mean=0, stddev=0.02)
+            weights = tf.get_variable(name='weights', dtype=tf.float32, initializer=init_w,
+                                      trainable=_conv_para['trainable'])
+            output = tf.nn.conv2d(_input, weights, _conv_para['strides'], _conv_para['padding'])
+            out_channels = _conv_para['ksize'][-1]
+            # zero initialize
+            init_b = tf.zeros([out_channels])
+            bias = tf.get_variable(name='bias', initializer=init_b, dtype=tf.float32, trainable=_conv_para['trainable'])
+            output = tf.nn.bias_add(output, bias)
+            return output
+
+    @staticmethod
+    def __activate(_input, _activate_para, name, reuse=False):
+        """
+        Define the activation function
+        :param _input:
+        :param _activate_para:
+        :param name:
+        :param reuse:
+        :return:
+        """
+        with tf.variable_scope(name, reuse=reuse):
+            if _activate_para['method'] == 'RELU':
+                return tf.nn.relu(_input, name='Relu_activation')
+            elif _activate_para['method'] == 'SIGMOID':
+                return tf.nn.sigmoid(_input, name='Sigmoid_activation')
+            elif _activate_para['method'] == 'TANH':
+                return tf.nn.tanh(_input, name='Tanh_activation')
+            else:
+                return NotImplementedError
+
+    @staticmethod
+    def __max_pool(_input, _max_pool_para, name, reuse=False):
+        """
+        Define the pooling function
+        :param _input:
+        :param _max_pool_para:
+        :param name:
+        :param reuse:
+        :return:
+        """
+        with tf.variable_scope(name, reuse=reuse):
+            return tf.nn.max_pool(_input, _max_pool_para['ksize'], _max_pool_para['strides'], _max_pool_para['padding'])
+
+    @staticmethod
+    def __concat(_input, _concat_para, name):
+        """
+        Define the concat function
+        :param _input:
+        :param _concat_para:
+        :param name:
+        :return:
+        """
+        return tf.concat(values=_input, axis=_concat_para['axis'], name=name)
+
+    @staticmethod
+    def __fully_connect(_input, _fc_para, name, reuse=False):
+        """
+        Define the fully connection function
+        :param _input:
+        :param _fc_para:
+        :param name:
+        :param reuse:
+        :return:
+        """
+        with tf.variable_scope(name, reuse=reuse):
+            # truncated normal initialize
+            init_w = tf.truncated_normal(shape=_fc_para['ksize'], mean=0, stddev=0.02)
+            weights = tf.get_variable(name='weights', initializer=init_w, dtype=tf.float32,
+                                      trainable=_fc_para['trainable'])
+            output = tf.nn.conv2d(_input, weights, _fc_para['strides'], _fc_para['padding'])
+            out_channels = _fc_para['ksize'][-1]
+            # zero initialize
+            init_b = tf.zeros([out_channels])
+            bias = tf.get_variable(name='bias', initializer=init_b, dtype=tf.float32, trainable=_fc_para['trainable'])
+            output = tf.nn.bias_add(output, bias)
+            return output
+
+    @staticmethod
+    def __batch_norm(_input, name, reuse=False):
+        """
+        Define the batch normally function
+        :param _input:
+        :param name:
+        :param reuse:
+        :return:
+        """
+        return tf.layers.batch_normalization(_input, name=name, reuse=reuse)
 
     def build_dvcnn(self, top_view_input, front_view_input):
         """
@@ -131,9 +227,9 @@ class DVCNNBuilder(object):
 
         return out_put
 
-    def build_dvcnn_test(self, top_view_input, front_view_input):
+    def build_dvcnn_val(self, top_view_input, front_view_input):
         """
-        Build dvcnn model
+        Build dvcnn model for evaluation
         :param top_view_input: top view input tensor normalized into 64*64
         :param front_view_input: front view input tensor normalized into 128*128
         :return:softmax logits with 2cls [not_road_line, is_road_line]

@@ -115,19 +115,14 @@ class RoiExtractor(object):
         :param img:input image
         :return:rotate rect list []
         """
-        # min max normalize the image
         image = img[:, :, 0]
-        image = np.uint8(image)
-        norm_image = np.zeros(image.shape)
-        norm_image = cv2.normalize(src=image, dst=norm_image, alpha=0, beta=255, norm_type=cv2.NORM_MINMAX)
-
-        # otsu thresh image
-        blur = cv2.GaussianBlur(src=norm_image, ksize=(5, 5), sigmaX=0, sigmaY=0)
-        ret, thresh_image = cv2.threshold(src=blur, thresh=0, maxval=255, type=cv2.THRESH_BINARY+cv2.THRESH_OTSU)
+        inds = np.where(image[:, :] > 300)
+        norm_thresh_image = np.zeros(image.shape).astype(np.uint8)
+        norm_thresh_image[inds] = 255
 
         # find connected component
-        image, contours, hierarchy = cv2.findContours(image=thresh_image, mode=cv2.RETR_EXTERNAL,
-                                                      method=cv2.CHAIN_APPROX_SIMPLE)
+        image, contours, hierarchy = cv2.findContours(image=norm_thresh_image, mode=cv2.RETR_CCOMP,
+                                                      method=cv2.CHAIN_APPROX_TC89_KCOS)
 
         # find rotate rect of each contour and check if it fits the condition, if fits the condition then save the
         # bounding rectangle of the contour

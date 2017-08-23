@@ -69,7 +69,7 @@ def train_dvcnn(lane_dir, non_lane_dir, json_model_path):
     # Set global training parameters
     training_epochs = config.cfg.TRAIN.EPOCHS
     display_step = config.cfg.TRAIN.DISPLAY_STEP
-    test_display_step = config.cfg.TRAIN.TEST_DISPLAY_STEP
+    val_display_step = config.cfg.TRAIN.TEST_DISPLAY_STEP
 
     # Set input tensors and augmentation processor
     train_top_input_tensor = tf.placeholder(dtype=tf.float32, shape=[None, 64, 64, 3], name='top_input')
@@ -129,8 +129,8 @@ def train_dvcnn(lane_dir, non_lane_dir, json_model_path):
     dvcnn_train_out = dvcnn.build_dvcnn(top_view_input=train_top_input_tensor_concat,
                                         front_view_input=train_front_input_tensor_concat)
 
-    dvcnn_val_out = dvcnn.build_dvcnn_test(top_view_input=val_top_input_tensor,
-                                           front_view_input=val_front_input_tensor)
+    dvcnn_val_out = dvcnn.build_dvcnn_val(top_view_input=val_top_input_tensor,
+                                          front_view_input=val_front_input_tensor)
 
     correct_preds_train = tf.equal(tf.argmax(tf.nn.softmax(dvcnn_train_out), 1),
                                    tf.argmax(train_label_input_tensor_concat, 1))
@@ -234,7 +234,7 @@ def train_dvcnn(lane_dir, non_lane_dir, json_model_path):
             if epoch % display_step == 0:
                 print('Epoch: {:04d} cost= {:9f} accuracy= {:9f}'.format(epoch + 1, c, train_accuracy))
 
-            if epoch % test_display_step == 0:
+            if epoch % val_display_step == 0:
                 print('Epoch: {:04d} test_accuracy= {:9f}'.format(epoch + 1, val_accuracy))
 
             saver.save(sess=sess, save_path=save_path, global_step=epoch)

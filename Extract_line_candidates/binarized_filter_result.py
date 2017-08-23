@@ -134,7 +134,7 @@ class FilterBinarizer(object):
         fv_roi_contours = np.array(fv_roi_contours)
         fv_roi_response_points = np.array(fv_roi_contours)
         fv_roi = imdb.Roidb(roi_index=top_roi_index, roi_contours=fv_roi_contours,
-                       roi_response_points=fv_roi_response_points)
+                            roi_response_points=fv_roi_response_points)
         return fv_roi, roidb_is_valid
 
     @staticmethod
@@ -168,20 +168,17 @@ class FilterBinarizer(object):
         """
         if img is None:
             raise ValueError('Image data is invalid')
-        # min max normalize the image
+        # intensity normalizing the image and thresholding thre image
         image = img[:, :, 0]
-        image = np.uint8(image)
-        norm_image = np.zeros(image.shape)
-        norm_image = cv2.normalize(src=image, dst=norm_image, alpha=0, beta=255, norm_type=cv2.NORM_MINMAX)
-
-        # otsu thresh image
-        blur = cv2.GaussianBlur(src=norm_image, ksize=(5, 5), sigmaX=0, sigmaY=0)
-        ret, thresh_image = cv2.threshold(src=blur, thresh=0, maxval=255, type=cv2.THRESH_BINARY+cv2.THRESH_OTSU)
+        inds = np.where(image[:, :] > 650)
+        norm_thresh_img = np.zeros(image.shape).astype(np.uint8)
+        norm_thresh_img[inds] = 255
 
         # find connected component
-        image, contours, hierarchy = cv2.findContours(image=thresh_image, mode=cv2.RETR_EXTERNAL,
-                                                      method=cv2.CHAIN_APPROX_SIMPLE)
-        response_points = self.__find_response_points_in_contours(contours=contours, image=thresh_image)
+        image, contours, hierarchy = cv2.findContours(image=norm_thresh_img, mode=cv2.RETR_CCOMP,
+                                                      method=cv2.CHAIN_APPROX_TC89_KCOS)
+        response_points = self.__find_response_points_in_contours(contours=contours, image=norm_thresh_img)
+
         # find rotate rect of each contour and check if it fits the condition, if fits the condition then save the
         # bounding rectangle of the contour
         result = []
@@ -199,4 +196,4 @@ class FilterBinarizer(object):
                 fv_roi_db, roi_is_valid = self.__map_roi_to_front_view(roidb=top_roi_db)
                 if roi_is_valid:
                     result.append((top_roi_db, fv_roi_db))
-        return result
+        return result, norm_thresh_img

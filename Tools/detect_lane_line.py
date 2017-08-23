@@ -54,7 +54,10 @@ def detect_lane_line(top_view_image_file, front_view_image_file, model_file, wei
 
     # extract roi candidates from top image
     extractor = RoiExtractorSingle(_cfg=cfg)
-    roi_pairs, filtered_image = extractor.extract_roi_candidates(image=top_image_patch)
+    roi_pairs, filtered_image, thresh_image = extractor.extract_roi_candidates(image=top_image_patch)
+    if len(roi_pairs) == 0:
+        print('No lane line rois are detected in this image pair')
+        return
 
     # use dvcnn to classify the roi is a lane line or not
     top_rois = []
@@ -137,8 +140,10 @@ def detect_lane_line(top_view_image_file, front_view_image_file, model_file, wei
     plt.imshow(fv_image[:, :, (2, 1, 0)])
     plt.figure('Top view with DVCNN score')
     plt.imshow(top_image_patch[:, :, (2, 1, 0)])
-    # plt.figure('Weight hat like filter image')
-    # plt.imshow(filtered_image[:, :, 0], cmap='gray')
+    plt.figure('Weight hat like filter image')
+    plt.imshow(filtered_image[:, :, 0], cmap='gray')
+    plt.figure('Thresh result')
+    plt.imshow(thresh_image, cmap='gray')
 
     optimizer = Optimizer(roidb_pair_list=remain_roi_pairs)
     merged_roi_list = optimizer.calculate_rois_score()
@@ -170,7 +175,7 @@ def detect_lane_line(top_view_image_file, front_view_image_file, model_file, wei
                 else:
                     roi_x_strictly_increase.append(x)
                     roi_y_strictly_increase.append(roi_y[idx])
-        bsp = BSpline(np.array(roi_x_strictly_increase), np.array(roi_y_strictly_increase), k=1)
+        # bsp = BSpline(np.array(roi_x_strictly_increase), np.array(roi_y_strictly_increase), k=1)
         lefty = int((-x * vy / vx) + y)
         righty = int(((top_image_patch.shape[1] - x) * vy / vx) + y)
         pt1 = (top_image_patch.shape[1] - 1, righty)

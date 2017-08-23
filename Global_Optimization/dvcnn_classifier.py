@@ -45,7 +45,7 @@ class DVCNNClassifier(dvcnn_model.DVCNNBuilder):
         if len(tf.trainable_variables()) == 0:
             dvcnn_out = self.build_dvcnn(top_view_input=top_input_tensor, front_view_input=fv_input_tensor)
         else:
-            dvcnn_out = self.build_dvcnn_test(top_view_input=top_input_tensor, front_view_input=fv_input_tensor)
+            dvcnn_out = self.build_dvcnn_val(top_view_input=top_input_tensor, front_view_input=fv_input_tensor)
 
         preds = tf.argmax(tf.nn.softmax(dvcnn_out), 1)
         scores_op = tf.nn.softmax(logits=dvcnn_out)

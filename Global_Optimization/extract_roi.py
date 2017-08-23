@@ -77,6 +77,6 @@ class RoiExtractorSingle(object):
 
         # apply OTSU threshold and components analysis function to extract the candidates rois
         filterbinarizor = binarized_filter_result.FilterBinarizer(_cfg=self.__cfg)
-        roi_pairs = filterbinarizor.binarized_whatlike_filtered_image(img=filtered_image[0])
+        roi_pairs, thresh_image = filterbinarizor.binarized_whatlike_filtered_image(img=filtered_image[0])
 
-        return roi_pairs, filtered_image[0]
+        return roi_pairs, filtered_image[0], thresh_image
