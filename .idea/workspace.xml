@@ -2,41 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ebe746b3-2d6e-4d26-8beb-d6243d4c0859" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/checkpoint" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-0.data-00000-of-00001" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-0.index" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-0.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-1.data-00000-of-00001" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-1.index" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-1.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-2.data-00000-of-00001" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-2.index" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-2.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-2995.data-00000-of-00001" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-2995.index" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-2995.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-2996.data-00000-of-00001" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-2996.index" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-2996.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-2997.data-00000-of-00001" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-2997.index" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-2997.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-2998.data-00000-of-00001" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-2998.index" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-2998.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-2999.data-00000-of-00001" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-2999.index" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-2999.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-3.data-00000-of-00001" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-3.index" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-3.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-4.data-00000-of-00001" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-4.index" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-4.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/tboard/events.out.tfevents.1503311765.baidu-pc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DVCNN/tboard/events.out.tfevents.1503314411.baidu-pc" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-5995.data-00000-of-00001" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-5995.index" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-5995.meta" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-5996.data-00000-of-00001" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-5996.index" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-5996.meta" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-5997.data-00000-of-00001" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-5997.index" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-5997.meta" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-5998.data-00000-of-00001" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-5998.index" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-5998.meta" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-5999.data-00000-of-00001" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-5999.index" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DVCNN/model/dvcnn.ckpt-5999.meta" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DVCNN/tboard/events.out.tfevents.1503316578.baidu-pc" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DVCNN/model/checkpoint" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Road_Center_Line.iml" afterPath="$PROJECT_DIR$/.idea/Road_Center_Line.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Global_Configuration/config.py" afterPath="$PROJECT_DIR$/Global_Configuration/config.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tools/detect_lane_line.py" afterPath="$PROJECT_DIR$/Tools/detect_lane_line.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -47,12 +32,112 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="config.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Global_Configuration/config.py">
+      <file leaf-file-name="dvcnn_model.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DVCNN/dvcnn_model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="589">
-              <caret line="31" column="29" lean-forward="true" selection-start-line="31" selection-start-column="29" selection-end-line="31" selection-end-column="29" />
+            <state relative-caret-position="285">
+              <caret line="16" column="0" lean-forward="false" selection-start-line="14" selection-start-column="7" selection-end-line="16" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="preprocess.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DVCNN/preprocess.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2660">
+              <caret line="140" column="33" lean-forward="false" selection-start-line="140" selection-start-column="33" selection-end-line="140" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="train_dvcnn.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Tools/train_dvcnn.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="418">
+              <caret line="25" column="21" lean-forward="false" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_dvcnn.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Tools/test_dvcnn.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="361">
+              <caret line="19" column="19" lean-forward="false" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
+              <folding>
+                <element signature="e#163#186#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dvcnn_global_variable.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DVCNN/model_def/dvcnn_global_variable.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2337">
+              <caret line="123" column="1" lean-forward="false" selection-start-line="109" selection-start-column="0" selection-end-line="123" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="data_provider.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DVCNN/data_provider.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="893">
+              <caret line="50" column="26" lean-forward="false" selection-start-line="50" selection-start-column="13" selection-end-line="50" selection-end-column="26" />
+              <folding>
+                <element signature="e#659#668#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dvcnn_classifier.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Global_Optimization/dvcnn_classifier.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="950">
+              <caret line="54" column="64" lean-forward="false" selection-start-line="54" selection-start-column="64" selection-end-line="54" selection-end-column="64" />
+              <folding>
+                <element signature="e#215#236#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="detect_lane_line.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Tools/detect_lane_line.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3952">
+              <caret line="208" column="61" lean-forward="false" selection-start-line="208" selection-start-column="61" selection-end-line="208" selection-end-column="61" />
+              <folding>
+                <element signature="e#204#213#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="train_dvcnn.sh" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Tools/train_dvcnn.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="76">
+              <caret line="4" column="68" lean-forward="false" selection-start-line="4" selection-start-column="68" selection-end-line="4" selection-end-column="68" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="cnn_util.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DVCNN/cnn_util.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3116">
+              <caret line="169" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="169" selection-end-column="0" />
+              <folding>
+                <element signature="e#164#187#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -128,7 +213,6 @@
         <option value="$PROJECT_DIR$/Global_Configuration/utils.py" />
         <option value="$PROJECT_DIR$/Global_Optimization/global_optimization.py" />
         <option value="$PROJECT_DIR$/Tools/crop_top_patch.py" />
-        <option value="$PROJECT_DIR$/Tools/detect_lane_line.py" />
         <option value="$PROJECT_DIR$/Tools/extract_roi_patch.py" />
         <option value="$PROJECT_DIR$/Tools/make_dvcnn_training_dataset.py" />
         <option value="$PROJECT_DIR$/Tools/test_dvcnn.py" />
@@ -144,14 +228,15 @@
         <option value="$PROJECT_DIR$/Global_Optimization/dvcnn_classifier.py" />
         <option value="$PROJECT_DIR$/Global_Optimization/extract_roi.py" />
         <option value="$PROJECT_DIR$/Global_Configuration/config.py" />
+        <option value="$PROJECT_DIR$/Tools/detect_lane_line.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="66" />
-    <option name="y" value="-11" />
-    <option name="width" value="1855" />
-    <option name="height" value="1092" />
+    <option name="x" value="67" />
+    <option name="y" value="-4" />
+    <option name="width" value="1853" />
+    <option name="height" value="1084" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -173,18 +258,8 @@
         <subPane>
           <expand>
             <path>
-              <item name="Road_Center_Line" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Road_Center_Line" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Road_Center_Line" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Road_Center_Line" type="462c0819:PsiDirectoryNode" />
-              <item name="Global_Configuration" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Road_Center_Line" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Road_Center_Line" type="462c0819:PsiDirectoryNode" />
-              <item name="Global_Optimization" type="462c0819:PsiDirectoryNode" />
+              <item name="DVCNN_Lane_Detection" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DVCNN_Lane_Detection" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -196,7 +271,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Python" />
-    <property name="last_opened_file_path" value="$USER_HOME$/pva-faster-rcnn" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
   <component name="RecentsManager">
@@ -472,9 +547,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="66" y="-11" width="1855" height="1092" extended-state="6" />
+    <frame x="67" y="-4" width="1855" height="1092" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21527393" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22855562" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -636,16 +711,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tools/detect_lane_line.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="29" lean-forward="false" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
-          <folding>
-            <element signature="e#204#213#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Tools/extract_roi_patch.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
@@ -663,26 +728,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tools/test_dvcnn.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" column="22" lean-forward="true" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/lib/python3.5/genericpath.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
           <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tools/train_dvcnn.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="68" lean-forward="false" selection-start-line="4" selection-start-column="68" selection-end-line="4" selection-end-column="68" />
         </state>
       </provider>
     </entry>
@@ -709,51 +759,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/DVCNN/__init__.py" />
     <entry file="file://$PROJECT_DIR$/DVCNN.py" />
-    <entry file="file://$PROJECT_DIR$/DVCNN/model_def/dvcnn_global_variable.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2318">
-          <caret line="122" column="5" lean-forward="false" selection-start-line="122" selection-start-column="5" selection-end-line="122" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tools/train_dvcnn.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="523">
-          <caret line="237" column="87" lean-forward="false" selection-start-line="237" selection-start-column="87" selection-end-line="237" selection-end-column="87" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DVCNN/cnn_util.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="60" column="0" lean-forward="false" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DVCNN/dvcnn_model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="19" column="47" lean-forward="false" selection-start-line="19" selection-start-column="47" selection-end-line="19" selection-end-column="47" />
-          <folding>
-            <element signature="e#167#190#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DVCNN/data_provider.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2660">
-          <caret line="140" column="43" lean-forward="false" selection-start-line="140" selection-start-column="43" selection-end-line="140" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DVCNN/preprocess.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2622">
-          <caret line="138" column="21" lean-forward="false" selection-start-line="138" selection-start-column="21" selection-end-line="138" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Extract_line_candidates/binarized_filter_result.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="570">
@@ -778,7 +783,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
           <caret line="7" column="3" lean-forward="false" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -786,19 +790,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
           <caret line="34" column="53" lean-forward="false" selection-start-line="34" selection-start-column="53" selection-end-line="34" selection-end-column="53" />
-          <folding>
-            <element signature="e#253#263#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Global_Optimization/dvcnn_classifier.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="865">
-          <caret line="54" column="64" lean-forward="false" selection-start-line="54" selection-start-column="64" selection-end-line="54" selection-end-column="64" />
-          <folding>
-            <element signature="e#215#236#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -806,7 +797,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
           <caret line="4" column="25" lean-forward="false" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -834,7 +824,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="732">
           <caret line="122" column="53" lean-forward="false" selection-start-line="122" selection-start-column="53" selection-end-line="122" selection-end-column="53" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -842,15 +831,103 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="67">
           <caret line="4" column="30" lean-forward="false" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Global_Configuration/config.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="589">
-          <caret line="31" column="29" lean-forward="true" selection-start-line="31" selection-start-column="29" selection-end-line="31" selection-end-column="29" />
+        <state relative-caret-position="1254">
+          <caret line="66" column="45" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Global_Optimization/dvcnn_classifier.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="950">
+          <caret line="54" column="64" lean-forward="false" selection-start-line="54" selection-start-column="64" selection-end-line="54" selection-end-column="64" />
+          <folding>
+            <element signature="e#215#236#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DVCNN/cnn_util.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3116">
+          <caret line="169" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="169" selection-end-column="0" />
+          <folding>
+            <element signature="e#164#187#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DVCNN/dvcnn_model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="16" column="0" lean-forward="false" selection-start-line="14" selection-start-column="7" selection-end-line="16" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DVCNN/preprocess.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2660">
+          <caret line="140" column="33" lean-forward="false" selection-start-line="140" selection-start-column="33" selection-end-line="140" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DVCNN/data_provider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="893">
+          <caret line="50" column="26" lean-forward="false" selection-start-line="50" selection-start-column="13" selection-end-line="50" selection-end-column="26" />
+          <folding>
+            <element signature="e#659#668#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tools/detect_lane_line.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3952">
+          <caret line="208" column="61" lean-forward="false" selection-start-line="208" selection-start-column="61" selection-end-line="208" selection-end-column="61" />
+          <folding>
+            <element signature="e#204#213#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tools/train_dvcnn.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="68" lean-forward="false" selection-start-line="4" selection-start-column="68" selection-end-line="4" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DVCNN/model_def/dvcnn_global_variable.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2337">
+          <caret line="123" column="1" lean-forward="false" selection-start-line="109" selection-start-column="0" selection-end-line="123" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tools/train_dvcnn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="25" column="21" lean-forward="false" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tools/test_dvcnn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="19" column="19" lean-forward="false" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
+          <folding>
+            <element signature="e#163#186#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
